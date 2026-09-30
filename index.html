@@ -1,0 +1,2452 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>英文法 無限ドリルBOX</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@500;700;900&family=Zen+Kaku+Gothic+New:wght@400;500;700;900&display=swap">
+<style>
+:root{
+  --bg:#f6f2e9;
+  --paper:#fffdf8;
+  --ink:#232338;
+  --ink-soft:#5b5b72;
+  --line:#dcd4c2;
+  --accent:#e2572b;
+  --accent-ink:#fff6f0;
+  --accent2:#1f8a82;
+  --accent2-ink:#eafaf7;
+  --good:#1f8a55;
+  --good-bg:#e7f6ec;
+  --bad:#c8402f;
+  --bad-bg:#fbeae6;
+  --shadow: 4px 4px 0 rgba(35,35,56,0.08);
+  --radius: 18px;
+}
+:root:not([data-theme="light"]){
+  @media (prefers-color-scheme: dark){
+    --bg:#1b1b26;
+    --paper:#242432;
+    --ink:#f1ede2;
+    --ink-soft:#b7b3c6;
+    --line:#3a3a4c;
+    --accent:#ff7b4d;
+    --accent-ink:#2a1712;
+    --accent2:#4fc9bd;
+    --accent2-ink:#0f2624;
+    --good:#5fd393;
+    --good-bg:#123023;
+    --bad:#ff8a78;
+    --bad-bg:#3a1a15;
+    --shadow: 4px 4px 0 rgba(0,0,0,0.35);
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#1b1b26;
+  --paper:#242432;
+  --ink:#f1ede2;
+  --ink-soft:#b7b3c6;
+  --line:#3a3a4c;
+  --accent:#ff7b4d;
+  --accent-ink:#2a1712;
+  --accent2:#4fc9bd;
+  --accent2-ink:#0f2624;
+  --good:#5fd393;
+  --good-bg:#123023;
+  --bad:#ff8a78;
+  --bad-bg:#3a1a15;
+  --shadow: 4px 4px 0 rgba(0,0,0,0.35);
+}
+*{box-sizing:border-box;}
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--ink);
+  font-family:"Zen Kaku Gothic New","Hiragino Kaku Gothic ProN","Hiragino Sans",sans-serif;
+  min-height:100vh;
+}
+.wrap{
+  max-width:860px;
+  margin:0 auto;
+  padding:28px 20px 64px;
+}
+h1,h2,h3{
+  font-family:"Zen Maru Gothic","Zen Kaku Gothic New",sans-serif;
+  text-wrap:balance;
+  margin:0;
+}
+header.top{
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:16px;
+  margin-bottom:22px;
+}
+.brand{
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+.brand .mark{
+  width:46px;height:46px;
+  border-radius:14px;
+  background:var(--accent);
+  color:var(--accent-ink);
+  display:flex;align-items:center;justify-content:center;
+  font-family:"Zen Maru Gothic",sans-serif;
+  font-weight:900;
+  font-size:20px;
+  transform:rotate(-4deg);
+  box-shadow:var(--shadow);
+  flex-shrink:0;
+}
+.brand h1{font-size:22px;font-weight:900;letter-spacing:.02em;}
+.brand p{margin:2px 0 0;color:var(--ink-soft);font-size:13px;}
+
+.scorebar{
+  display:flex;
+  gap:10px;
+  align-items:center;
+  font-family:"Zen Maru Gothic",sans-serif;
+}
+.pill{
+  background:var(--paper);
+  border:1.5px solid var(--line);
+  border-radius:999px;
+  padding:7px 14px;
+  font-size:13px;
+  font-weight:700;
+  display:flex;
+  gap:6px;
+  align-items:baseline;
+  white-space:nowrap;
+}
+.pill b{font-variant-numeric:tabular-nums;font-size:15px;color:var(--accent);}
+
+/* ---- topic select screen ---- */
+.card{
+  background:var(--paper);
+  border:1.5px solid var(--line);
+  border-radius:var(--radius);
+  box-shadow:var(--shadow);
+  padding:22px;
+}
+.intro-card{margin-bottom:20px;}
+.intro-card p{color:var(--ink-soft);line-height:1.75;margin:8px 0 0;font-size:14.5px;}
+
+.mode-card{margin-bottom:20px;}
+.mode-desc{color:var(--ink-soft);margin:6px 0 14px;font-size:13.5px;line-height:1.6;}
+.segwrap{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+}
+@media (max-width:520px){ .segwrap{grid-template-columns:1fr;} }
+.seg{
+  font-family:"Zen Kaku Gothic New",sans-serif;
+  text-align:left;
+  padding:13px 15px;
+  border-radius:13px;
+  border:1.5px solid var(--line);
+  background:var(--bg);
+  color:var(--ink);
+  cursor:pointer;
+  font-size:14.5px;
+  font-weight:700;
+  display:flex;
+  flex-direction:column;
+  gap:4px;
+  transition:transform .08s ease, border-color .1s ease, background .1s ease;
+}
+.seg .segsub{
+  font-weight:400;
+  font-size:12px;
+  color:var(--ink-soft);
+}
+.seg:hover{border-color:var(--accent2);}
+.seg.active{
+  background:var(--accent2-ink);
+  border-color:var(--accent2);
+  color:var(--accent2);
+}
+.seg.active .segsub{color:var(--accent2);opacity:.85;}
+
+.group-title-row{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin:26px 0 10px;
+}
+.group-title-row:first-of-type{margin-top:4px;}
+.group-title{
+  font-family:"Zen Maru Gothic",sans-serif;
+  font-weight:700;
+  font-size:14.5px;
+  color:var(--accent2);
+  display:flex;align-items:center;gap:8px;
+}
+.group-title::before{
+  content:"";
+  width:9px;height:9px;
+  border-radius:3px;
+  background:var(--accent2);
+  display:inline-block;
+  transform:rotate(45deg);
+}
+.minibtn{
+  border:none;background:transparent;
+  color:var(--ink-soft);
+  font-size:12.5px;
+  text-decoration:underline;
+  cursor:pointer;
+  font-family:inherit;
+  padding:2px;
+}
+.minibtn:hover{color:var(--accent2);}
+
+.chiplist{
+  display:flex;
+  flex-wrap:wrap;
+  gap:9px;
+}
+.chip{
+  position:relative;
+}
+.chip input{
+  position:absolute;
+  opacity:0;
+  width:100%;height:100%;
+  margin:0;
+  cursor:pointer;
+}
+.chip label{
+  display:block;
+  padding:9px 15px;
+  border-radius:12px;
+  border:1.5px solid var(--line);
+  background:var(--bg);
+  font-size:13.5px;
+  font-weight:500;
+  color:var(--ink);
+  cursor:pointer;
+  transition:transform .1s ease, background .12s ease, border-color .12s ease, color .12s ease;
+  user-select:none;
+}
+.chip input:checked + label{
+  background:var(--accent);
+  border-color:var(--accent);
+  color:var(--accent-ink);
+  font-weight:700;
+  transform:translateY(-2px);
+  box-shadow:3px 3px 0 rgba(35,35,56,0.12);
+}
+.chip input:focus-visible + label{
+  outline:2.5px solid var(--accent2);
+  outline-offset:2px;
+}
+.chip label:hover{border-color:var(--accent2);}
+
+.toprow{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  align-items:center;
+  justify-content:space-between;
+  margin-top:8px;
+}
+.selcount{font-size:13px;color:var(--ink-soft);}
+.selcount b{color:var(--accent2);font-variant-numeric:tabular-nums;}
+
+.bigbtn{
+  font-family:"Zen Maru Gothic",sans-serif;
+  font-weight:900;
+  font-size:17px;
+  border:none;
+  border-radius:14px;
+  padding:16px 20px;
+  cursor:pointer;
+  background:var(--accent);
+  color:var(--accent-ink);
+  box-shadow:var(--shadow);
+  transition:transform .08s ease, box-shadow .08s ease, opacity .15s ease;
+  width:100%;
+  margin-top:22px;
+}
+.bigbtn:hover:not(:disabled){transform:translateY(-2px);box-shadow:6px 6px 0 rgba(35,35,56,0.14);}
+.bigbtn:active:not(:disabled){transform:translateY(0);box-shadow:2px 2px 0 rgba(35,35,56,0.14);}
+.bigbtn:disabled{opacity:.4;cursor:not-allowed;}
+
+/* ---- quiz screen ---- */
+.quizhead{
+  display:flex;justify-content:space-between;align-items:center;
+  margin-bottom:14px;flex-wrap:wrap;gap:10px;
+}
+.backlink{
+  background:none;border:none;cursor:pointer;
+  color:var(--ink-soft);font-size:13px;font-family:inherit;
+  display:flex;align-items:center;gap:5px;
+  padding:6px 4px;
+}
+.backlink:hover{color:var(--accent2);}
+
+.topic-tag{
+  display:inline-block;
+  font-family:"Zen Maru Gothic",sans-serif;
+  font-size:12px;font-weight:700;
+  background:var(--accent2-ink);
+  color:var(--accent2);
+  padding:5px 12px;
+  border-radius:999px;
+  margin-bottom:14px;
+}
+
+.q-stem{
+  font-size:20px;
+  line-height:1.85;
+  font-weight:500;
+  margin:6px 0 4px;
+}
+.q-stem .blank{
+  display:inline-block;
+  min-width:74px;
+  border-bottom:2.5px solid var(--accent);
+  text-align:center;
+  color:var(--accent);
+  font-weight:700;
+}
+.q-jp{
+  color:var(--ink-soft);
+  font-size:13.5px;
+  margin:0 0 18px;
+}
+
+.choices{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:11px;
+  margin-top:6px;
+}
+@media (max-width:520px){ .choices{grid-template-columns:1fr;} }
+.choices.wide{grid-template-columns:1fr;}
+
+.choice{
+  font-family:"Zen Kaku Gothic New",sans-serif;
+  font-size:15.5px;
+  font-weight:500;
+  text-align:left;
+  padding:14px 16px;
+  border-radius:13px;
+  border:1.5px solid var(--line);
+  background:var(--bg);
+  color:var(--ink);
+  cursor:pointer;
+  display:flex;
+  align-items:center;
+  gap:10px;
+  transition:transform .08s ease, border-color .1s ease, background .1s ease;
+}
+.choice .letter{
+  width:24px;height:24px;flex-shrink:0;
+  border-radius:7px;
+  background:var(--paper);
+  border:1.5px solid var(--line);
+  display:flex;align-items:center;justify-content:center;
+  font-size:12px;font-weight:900;
+  font-family:"Zen Maru Gothic",sans-serif;
+  color:var(--ink-soft);
+}
+.choices.wide .choice{align-items:flex-start;}
+.choices.wide .choice .letter{margin-top:1px;}
+.choice:hover:not(:disabled){border-color:var(--accent2);transform:translateY(-1px);}
+.choice:disabled{cursor:default;}
+.choice.correct{background:var(--good-bg);border-color:var(--good);color:var(--good);}
+.choice.correct .letter{background:var(--good);border-color:var(--good);color:var(--accent-ink);}
+.choice.wrong{background:var(--bad-bg);border-color:var(--bad);color:var(--bad);}
+.choice.wrong .letter{background:var(--bad);border-color:var(--bad);color:var(--accent-ink);}
+.choice.dim{opacity:.5;}
+
+.feedback{
+  margin-top:18px;
+  border-radius:14px;
+  padding:16px 18px;
+  display:none;
+}
+.feedback.show{display:block;}
+.feedback.good{background:var(--good-bg);border:1.5px solid var(--good);}
+.feedback.bad{background:var(--bad-bg);border:1.5px solid var(--bad);}
+.fb-title{
+  font-family:"Zen Maru Gothic",sans-serif;
+  font-weight:900;
+  font-size:15px;
+  margin:0 0 6px;
+  display:flex;align-items:center;gap:7px;
+}
+.feedback.good .fb-title{color:var(--good);}
+.feedback.bad .fb-title{color:var(--bad);}
+.feedback p{margin:0;font-size:14px;line-height:1.7;color:var(--ink);}
+.feedback .ans{font-weight:700;}
+
+.nextbtn{
+  margin-top:16px;
+}
+
+.qcard{min-height:1px;}
+
+.csvrow{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  flex-wrap:wrap;
+  margin-top:4px;
+}
+.csvlabel{ font-size:13px; color:var(--ink-soft); }
+.csvrow input[type=number]{
+  width:72px;
+  padding:8px 10px;
+  border-radius:10px;
+  border:1.5px solid var(--line);
+  background:var(--paper);
+  color:var(--ink);
+  font-size:14px;
+  font-family:inherit;
+}
+.csvbtn{
+  background:var(--accent2);
+  color:var(--accent2-ink);
+  border:none;
+  border-radius:10px;
+  padding:9px 16px;
+  font-weight:700;
+  font-size:13.5px;
+  font-family:"Zen Kaku Gothic New",sans-serif;
+  cursor:pointer;
+  transition:opacity .12s ease, transform .08s ease;
+}
+.csvbtn:hover:not(:disabled){ opacity:.88; transform:translateY(-1px); }
+.csvbtn:disabled{ opacity:.5; cursor:not-allowed; }
+
+.formatlist{
+  display:flex;
+  flex-wrap:wrap;
+  gap:9px;
+}
+.fchip{ position:relative; }
+.fchip input{
+  position:absolute; opacity:0; width:100%; height:100%; margin:0; cursor:pointer;
+}
+.fchip label{
+  display:flex;
+  align-items:flex-start;
+  gap:10px;
+  padding:9px 15px 9px 12px;
+  border-radius:12px;
+  border:1.5px solid var(--line);
+  background:var(--bg);
+  font-size:13px;
+  font-weight:500;
+  color:var(--ink);
+  cursor:pointer;
+  transition:background .12s ease, border-color .12s ease, color .12s ease;
+  user-select:none;
+}
+.fchip .fbox{
+  flex-shrink:0;
+  width:19px;height:19px;
+  margin-top:1px;
+  border-radius:5px;
+  border:1.5px solid var(--line);
+  background:var(--paper);
+  position:relative;
+  transition:background .12s ease, border-color .12s ease;
+}
+.fchip .fbox::after{
+  content:"";
+  position:absolute;
+  left:6px; top:3px;
+  width:5px; height:9px;
+  border-right:2px solid var(--accent-ink);
+  border-bottom:2px solid var(--accent-ink);
+  transform:rotate(40deg);
+  opacity:0;
+  transition:opacity .1s ease;
+}
+.fchip .ftext{ display:flex; flex-direction:column; min-width:0; }
+.fchip .fdesc{display:block;font-size:11px;color:var(--ink-soft);margin-top:1px;}
+.fchip input:checked + label{
+  background:var(--accent2-ink);
+  border-color:var(--accent2);
+  color:var(--ink);
+  font-weight:700;
+}
+.fchip input:checked + label .fbox{
+  background:var(--accent2);
+  border-color:var(--accent2);
+}
+.fchip input:checked + label .fbox::after{ opacity:1; }
+.fchip input:focus-visible + label{ outline:2.5px solid var(--accent); outline-offset:2px; }
+.fchip label:hover{border-color:var(--accent);}
+
+.qtypelabel{
+  display:inline-block;
+  font-size:11.5px;
+  font-weight:700;
+  color:var(--accent2);
+  background:var(--accent2-ink);
+  padding:3px 10px;
+  border-radius:999px;
+  margin-bottom:10px;
+}
+.en-sentence, .jp-sentence{
+  font-size:19px;
+  line-height:1.75;
+  font-weight:600;
+  margin:2px 0 18px;
+  padding:14px 16px;
+  border-radius:13px;
+  border:1.5px solid var(--line);
+  background:var(--paper);
+}
+.jp-sentence{font-family:"Zen Maru Gothic","Zen Kaku Gothic New",sans-serif;}
+
+.reorder-area{ margin-top:6px; }
+.reorder-answer{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  min-height:52px;
+  padding:12px;
+  border-radius:13px;
+  border:2px dashed var(--line);
+  background:var(--paper);
+  margin-bottom:14px;
+}
+.reorder-answer:empty::after{
+  content:"↓ 下の単語をクリックして、ここに順番に並べよう";
+  color:var(--ink-soft);
+  font-size:12.5px;
+  align-self:center;
+}
+.reorder-bank{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  margin-bottom:16px;
+}
+.rchip{
+  font-family:"Zen Kaku Gothic New",sans-serif;
+  font-size:15px;
+  font-weight:600;
+  padding:9px 14px;
+  border-radius:11px;
+  border:1.5px solid var(--line);
+  background:var(--bg);
+  color:var(--ink);
+  cursor:pointer;
+  transition:transform .08s ease, border-color .1s ease, background .1s ease;
+}
+.rchip:hover{border-color:var(--accent2);transform:translateY(-1px);}
+.reorder-answer .rchip{
+  background:var(--accent2-ink);
+  border-color:var(--accent2);
+  color:var(--accent2);
+}
+.reorder-answer .rchip.wrongpos{
+  background:var(--bad-bg);
+  border-color:var(--bad);
+  color:var(--bad);
+}
+.reorder-answer .rchip.rightpos{
+  background:var(--good-bg);
+  border-color:var(--good);
+  color:var(--good);
+}
+.reorder-controls{
+  display:flex;
+  gap:12px;
+  align-items:center;
+  flex-wrap:wrap;
+}
+.reorder-controls .bigbtn{ width:auto; flex:1; margin-top:0; }
+.reorder-controls .minibtn{ font-size:13px; }
+
+footer.note{
+  text-align:center;
+  color:var(--ink-soft);
+  font-size:12px;
+  margin-top:26px;
+  line-height:1.7;
+}
+</style>
+
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div class="brand">
+      <div class="mark">Q</div>
+      <div>
+        <h1>英文法 無限ドリルBOX</h1>
+        <p>単元を選ぶと、その場で問題を作り続けます</p>
+      </div>
+    </div>
+    <div class="scorebar" id="scorebar" hidden>
+      <span class="pill">正解 <b id="scoreCorrect">0</b>/<span id="scoreTotal">0</span></span>
+      <span class="pill">連続 <b id="scoreStreak">0</b></span>
+    </div>
+  </header>
+
+  <!-- ===== SELECT SCREEN ===== -->
+  <div id="selectScreen">
+    <div class="card intro-card">
+      <h2 style="font-size:16px;">出したい単元にチェックを入れよう</h2>
+      <p>複数の単元を同時に選ぶと、その中からランダムに出題されます。「現在分詞と動名詞」のように、間違えやすい単元をまとめて選ぶのもおすすめです。何問でも新しい問題が作れます。</p>
+    </div>
+
+    <div class="card mode-card">
+      <h2 style="font-size:16px;">日本語訳の出し方</h2>
+      <p class="mode-desc">問題の下に出す日本語のタイプを選べます。あとからでも切り替えOKです。</p>
+      <div class="segwrap" role="radiogroup" aria-label="日本語訳の出し方">
+        <button type="button" class="seg active" data-mode="hint" id="modeHintBtn">
+          ヒントだけ<span class="segsub">単語の意味など、今まで通りの短いヒント</span>
+        </button>
+        <button type="button" class="seg" data-mode="full" id="modeFullBtn">
+          文全体の日本語訳<span class="segsub">できあがる英文全体の意味をまるごと表示</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="card mode-card" id="formatCard">
+      <h2 style="font-size:16px;">出題形式</h2>
+      <p class="mode-desc">どの形式で問題を出すか選べます（複数選択OK）。チェックした形式の中からランダムに出題されます。</p>
+      <div class="formatlist" id="formatList"></div>
+    </div>
+
+    <div class="card" id="topicCard">
+      <!-- groups injected by JS -->
+    </div>
+
+    <button class="bigbtn" id="startBtn" disabled>この単元でスタート ▶</button>
+
+    <div class="card mode-card" id="csvCard">
+      <h2 style="font-size:16px;">CSVで書き出す（他のクイズツール用）</h2>
+      <p class="mode-desc">上で選んだ単元・出題形式から問題をランダムに生成して、「単元,問題文,赤,青,黄,緑,正解」の形式のCSVファイルとして書き出します。並べ替え形式は組み合わせられないので、書き出すときは自動的に除外されます。</p>
+      <div class="csvrow">
+        <label for="csvCount" class="csvlabel">書き出す問題数</label>
+        <input type="number" id="csvCount" min="1" max="200" value="20">
+        <button class="csvbtn" id="csvExportBtn" type="button">CSVを書き出す ⬇</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== QUIZ SCREEN ===== -->
+  <div id="quizScreen" hidden>
+    <div class="quizhead">
+      <button class="backlink" id="backBtn">← 単元をえらび直す</button>
+      <button class="backlink" id="modeToggleBtn">日本語訳: ヒントだけ ⇄</button>
+    </div>
+    <div class="card qcard">
+      <span class="topic-tag" id="topicTag">TOPIC</span>
+      <div class="q-stem" id="qStem"></div>
+      <div class="q-jp" id="qJp"></div>
+      <div class="choices" id="choices"></div>
+      <div class="reorder-area" id="reorderArea" hidden>
+        <div class="reorder-answer" id="reorderAnswer"></div>
+        <div class="reorder-bank" id="reorderBank"></div>
+        <div class="reorder-controls">
+          <button class="minibtn" id="reorderReset" type="button">↺ リセット</button>
+          <button class="bigbtn" id="reorderCheck" type="button" disabled>これで決定する ▶</button>
+        </div>
+      </div>
+      <div class="feedback" id="feedback">
+        <p class="fb-title" id="fbTitle"></p>
+        <p id="fbBody"></p>
+      </div>
+      <button class="bigbtn nextbtn" id="nextBtn" hidden>次の問題へ ▶</button>
+    </div>
+  </div>
+
+  <footer class="note">中学・高校の英文法を、飽きるまで何度でも。まちがえた問題は解説をよく読んでから次へ進もう。</footer>
+</div>
+
+<script>
+(function(){
+"use strict";
+
+/* ---------------------------------------------------------
+   utilities
+--------------------------------------------------------- */
+function pick(arr){ return arr[Math.floor(Math.random()*arr.length)]; }
+function pickN(arr,n){
+  const a=arr.slice(); const out=[];
+  while(out.length<n && a.length){
+    out.push(a.splice(Math.floor(Math.random()*a.length),1)[0]);
+  }
+  return out;
+}
+function shuffle(arr){
+  const a=arr.slice();
+  for(let i=a.length-1;i>0;i--){
+    const j=Math.floor(Math.random()*(i+1));
+    [a[i],a[j]]=[a[j],a[i]];
+  }
+  return a;
+}
+function cap(s){ return s.charAt(0).toUpperCase()+s.slice(1); }
+function uniqChoices(correct, distractors){
+  const seen=new Set([correct]);
+  const out=[];
+  for(const d of distractors){
+    if(!seen.has(d)){ seen.add(d); out.push(d); }
+    if(out.length>=3) break;
+  }
+  return shuffle([correct,...out]);
+}
+
+/* ---------------------------------------------------------
+   vocabulary banks
+--------------------------------------------------------- */
+/* jp = dictionary-form meaning, jpPast = 〜た form, jpTe = 〜て form, jpTai = 〜たい form
+   (jpTe + "いる" = progressive, jpTe + "しまっていた" = past-perfect-ish, jpTe + "いた" = past progressive)
+   jpPassive / jpPassivePast are only supplied for verbs used in the passive-voice generator. */
+const VERBS = [
+  {base:'play',   third:'plays',    ing:'playing',    past:'played',   pp:'played',   jp:'する',       jpPast:'した',       jpTe:'して',       jpTai:'したい',       jpNai:'しない'},
+  {base:'watch',  third:'watches',  ing:'watching',   past:'watched',  pp:'watched',  jp:'見る',       jpPast:'見た',       jpTe:'見て',       jpTai:'見たい',       jpNai:'見ない'},
+  {base:'study',  third:'studies',  ing:'studying',   past:'studied',  pp:'studied',  jp:'勉強する',    jpPast:'勉強した',    jpTe:'勉強して',    jpTai:'勉強したい',    jpNai:'勉強しない'},
+  {base:'clean',  third:'cleans',   ing:'cleaning',   past:'cleaned',  pp:'cleaned',  jp:'そうじする',  jpPast:'そうじした',  jpTe:'そうじして',  jpTai:'そうじしたい',  jpNai:'そうじしない'},
+  {base:'visit',  third:'visits',   ing:'visiting',   past:'visited',  pp:'visited',  jp:'訪れる',     jpPast:'訪れた',     jpTe:'訪れて',     jpTai:'訪れたい',     jpNai:'訪れない'},
+  {base:'use',    third:'uses',     ing:'using',      past:'used',     pp:'used',     jp:'使う',       jpPast:'使った',     jpTe:'使って',     jpTai:'使いたい',     jpNai:'使わない',   jpPassive:'使われる',   jpPassivePast:'使われた'},
+  {base:'live',   third:'lives',    ing:'living',     past:'lived',    pp:'lived',    jp:'住む',       jpPast:'住んだ',     jpTe:'住んで',     jpTai:'住みたい',     jpNai:'住まない'},
+  {base:'cook',   third:'cooks',    ing:'cooking',    past:'cooked',   pp:'cooked',   jp:'料理する',    jpPast:'料理した',    jpTe:'料理して',    jpTai:'料理したい',    jpNai:'料理しない'},
+  {base:'help',   third:'helps',    ing:'helping',    past:'helped',   pp:'helped',   jp:'手伝う',     jpPast:'手伝った',   jpTe:'手伝って',   jpTai:'手伝いたい',   jpNai:'手伝わない'},
+  {base:'finish', third:'finishes', ing:'finishing',  past:'finished', pp:'finished', jp:'終える',     jpPast:'終えた',     jpTe:'終えて',     jpTai:'終えたい',     jpNai:'終えない'},
+  {base:'go',     third:'goes',     ing:'going',      past:'went',     pp:'gone',     jp:'行く',       jpPast:'行った',     jpTe:'行って',     jpTai:'行きたい',     jpNai:'行かない'},
+  {base:'see',    third:'sees',     ing:'seeing',     past:'saw',      pp:'seen',     jp:'見る',       jpPast:'見た',       jpTe:'見て',       jpTai:'見たい',       jpNai:'見ない'},
+  {base:'eat',    third:'eats',     ing:'eating',     past:'ate',      pp:'eaten',    jp:'食べる',     jpPast:'食べた',     jpTe:'食べて',     jpTai:'食べたい',     jpNai:'食べない'},
+  {base:'write',  third:'writes',   ing:'writing',    past:'wrote',    pp:'written',  jp:'書く',       jpPast:'書いた',     jpTe:'書いて',     jpTai:'書きたい',     jpNai:'書かない',   jpPassive:'書かれる',   jpPassivePast:'書かれた'},
+  {base:'read',   third:'reads',    ing:'reading',    past:'read',     pp:'read',     jp:'読む',       jpPast:'読んだ',     jpTe:'読んで',     jpTai:'読みたい',     jpNai:'読まない',   jpPassive:'読まれる',   jpPassivePast:'読まれた'},
+  {base:'do',     third:'does',     ing:'doing',      past:'did',      pp:'done',     jp:'する',       jpPast:'した',       jpTe:'して',       jpTai:'したい',       jpNai:'しない'},
+  {base:'make',   third:'makes',    ing:'making',     past:'made',     pp:'made',     jp:'作る',       jpPast:'作った',     jpTe:'作って',     jpTai:'作りたい',     jpNai:'作らない',   jpPassive:'作られる',   jpPassivePast:'作られた'},
+  {base:'take',   third:'takes',    ing:'taking',     past:'took',     pp:'taken',    jp:'取る',       jpPast:'取った',     jpTe:'取って',     jpTai:'取りたい',     jpNai:'取らない'},
+  {base:'run',    third:'runs',     ing:'running',    past:'ran',      pp:'run',      jp:'走る',       jpPast:'走った',     jpTe:'走って',     jpTai:'走りたい',     jpNai:'走らない'},
+  {base:'swim',   third:'swims',    ing:'swimming',   past:'swam',     pp:'swum',     jp:'泳ぐ',       jpPast:'泳いだ',     jpTe:'泳いで',     jpTai:'泳ぎたい',     jpNai:'泳がない'},
+  {base:'buy',    third:'buys',     ing:'buying',     past:'bought',   pp:'bought',   jp:'買う',       jpPast:'買った',     jpTe:'買って',     jpTai:'買いたい',     jpNai:'買わない',   jpPassive:'買われる',   jpPassivePast:'買われた'},
+  {base:'sing',   third:'sings',    ing:'singing',    past:'sang',     pp:'sung',     jp:'歌う',       jpPast:'歌った',     jpTe:'歌って',     jpTai:'歌いたい',     jpNai:'歌わない',   jpPassive:'歌われる',   jpPassivePast:'歌われた'},
+  {base:'speak',  third:'speaks',   ing:'speaking',   past:'spoke',    pp:'spoken',   jp:'話す',       jpPast:'話した',     jpTe:'話して',     jpTai:'話したい',     jpNai:'話さない'},
+  {base:'bring',  third:'brings',   ing:'bringing',   past:'brought',  pp:'brought',  jp:'持ってくる',  jpPast:'持ってきた',  jpTe:'持ってきて',  jpTai:'持ってきたい',  jpNai:'持ってこない'},
+  {base:'break',  third:'breaks',   ing:'breaking',   past:'broke',    pp:'broken',   jp:'こわす',     jpPast:'こわした',   jpTe:'こわして',   jpTai:'こわしたい',   jpNai:'こわさない', jpPassive:'こわされる', jpPassivePast:'こわされた'},
+  {base:'wait',   third:'waits',    ing:'waiting',    past:'waited',   pp:'waited',   jp:'待つ',       jpPast:'待った',     jpTe:'待って',     jpTai:'待ちたい',     jpNai:'待たない'},
+  {base:'work',   third:'works',    ing:'working',    past:'worked',   pp:'worked',   jp:'働く',       jpPast:'働いた',     jpTe:'働いて',     jpTai:'働きたい',     jpNai:'働かない'},
+];
+
+const OBJECTS = ['soccer','the piano','a book','his homework','the guitar','this song','the window','a letter','breakfast','the room','the car','the dishes','a picture','English','the violin'];
+
+/* ---------------------------------------------------------
+   Japanese glosses used to build full sentence translations.
+   Every random slot (subject / object / time phrase / name / group)
+   used anywhere in the generators below has a fixed, pre-written
+   Japanese equivalent here — nothing is machine-translated on the fly.
+--------------------------------------------------------- */
+const SUBJECT_JP = {
+  'I':'私', 'You':'あなた', 'He':'彼', 'She':'彼女', 'Tom':'トム', 'My sister':'私の姉',
+  'My father':'私の父', 'Yui':'ゆい', 'We':'私たち', 'They':'彼ら', 'My parents':'私の両親', 'The students':'生徒たち'
+};
+const OBJECT_JP = {
+  'soccer':'サッカー', 'the piano':'ピアノ', 'a book':'本', 'his homework':'彼の宿題', 'the guitar':'ギター',
+  'this song':'この歌', 'the window':'窓', 'a letter':'手紙', 'breakfast':'朝食', 'the room':'部屋',
+  'the car':'車', 'the dishes':'お皿', 'a picture':'絵', 'English':'英語', 'the violin':'バイオリン'
+};
+const TIME_JP = {
+  'every day':'毎日', 'usually':'たいてい', 'always':'いつも', 'often':'よく', 'every morning':'毎朝', 'every weekend':'毎週末',
+  'now':'今', 'right now':'今すぐ', 'at the moment':'今',
+  'yesterday':'昨日', 'last week':'先週', 'two days ago':'2日前', 'last night':'昨夜', 'last Sunday':'この前の日曜日',
+  'at seven yesterday evening':'昨日の夜7時に', 'at that time':'そのとき', 'when I called':'私が電話したとき', 'at noon yesterday':'昨日の正午に',
+  'since 2020':'2020年から', 'for three years':'3年間', 'for two hours':'2時間', 'for a long time':'長い間',
+  'since this morning':'今朝から', 'since 9 a.m':'午前9時から', 'tomorrow':'明日',
+  'every year':'毎年', 'last year':'昨年', 'by many people':'多くの人々に', 'in 1998':'1998年に',
+  'next year':'来年', 'at this moment':'今この瞬間に'
+};
+const NAME_JP = { 'Tom':'トム','Ken':'ケン','Yui':'ゆい','Mika':'ミカ','Aki':'アキ','Sara':'サラ','Emma':'エマ','Jack':'ジャック' };
+const GROUP_JP = { 'in his class':'彼のクラスで', 'in the world':'世界で', 'in our school':'私たちの学校で', 'of the three':'3つの中で', 'in the store':'その店で' };
+function subjJP(s){ return SUBJECT_JP[s.t] || s.t; }
+function objJP(o){ return OBJECT_JP[o] || o; }
+function timeJP(t){ return TIME_JP[t] || t; }
+
+/* ---------------------------------------------------------
+   verb + object pairings that actually make sense together
+   (so a random draw never produces "clean the violin" or
+   "finish the piano" — every pair below is a real, natural
+   English collocation, each with its own Japanese gloss and
+   the correct particle: を（する対象）／に（行き先）／で（場所）
+--------------------------------------------------------- */
+const VERB_OBJECT_PAIRS = [
+  {v:'play',   o:'soccer',            oJP:'サッカー'},
+  {v:'play',   o:'the piano',         oJP:'ピアノ'},
+  {v:'play',   o:'the guitar',        oJP:'ギター'},
+  {v:'watch',  o:'a movie',           oJP:'映画'},
+  {v:'watch',  o:'TV',                oJP:'テレビ'},
+  {v:'study',  o:'English',           oJP:'英語'},
+  {v:'study',  o:'math',              oJP:'数学'},
+  {v:'clean',  o:'the room',          oJP:'部屋'},
+  {v:'clean',  o:'the window',        oJP:'窓'},
+  {v:'visit',  o:'Kyoto',             oJP:'京都'},
+  {v:'visit',  o:'the museum',        oJP:'博物館'},
+  {v:'use',    o:'the computer',      oJP:'コンピューター'},
+  {v:'use',    o:'his phone',         oJP:'彼のスマートフォン'},
+  {v:'live',   o:'in Tokyo',          oJP:'東京',   particle:'に'},
+  {v:'cook',   o:'breakfast',         oJP:'朝食'},
+  {v:'cook',   o:'dinner',            oJP:'夕食'},
+  {v:'help',   o:'his mother',        oJP:'彼のお母さん'},
+  {v:'finish', o:'his homework',      oJP:'彼の宿題'},
+  {v:'finish', o:'breakfast',         oJP:'朝食'},
+  {v:'go',     o:'to school',         oJP:'学校',   particle:'に'},
+  {v:'go',     o:'to the park',       oJP:'公園',   particle:'に'},
+  {v:'see',    o:'a movie',           oJP:'映画'},
+  {v:'see',    o:'the picture',       oJP:'その絵'},
+  {v:'eat',    o:'breakfast',         oJP:'朝食'},
+  {v:'eat',    o:'dinner',            oJP:'夕食'},
+  {v:'write',  o:'a letter',          oJP:'手紙'},
+  {v:'write',  o:'a song',            oJP:'歌'},
+  {v:'read',   o:'a book',            oJP:'本'},
+  {v:'read',   o:'a letter',          oJP:'手紙'},
+  {v:'do',     o:'his homework',      oJP:'彼の宿題'},
+  {v:'do',     o:'the dishes',        oJP:'お皿洗い'},
+  {v:'make',   o:'breakfast',         oJP:'朝食'},
+  {v:'make',   o:'dinner',            oJP:'夕食'},
+  {v:'take',   o:'a picture',         oJP:'写真'},
+  {v:'run',    o:'in the park',       oJP:'公園',   particle:'を'},
+  {v:'swim',   o:'in the sea',        oJP:'海',     particle:'で'},
+  {v:'swim',   o:'in the pool',       oJP:'プール', particle:'で'},
+  {v:'buy',    o:'a book',            oJP:'本'},
+  {v:'buy',    o:'a new guitar',      oJP:'新しいギター'},
+  {v:'sing',   o:'this song',         oJP:'この歌'},
+  {v:'sing',   o:'a song',            oJP:'歌'},
+  {v:'speak',  o:'English',           oJP:'英語'},
+  {v:'speak',  o:'Japanese',          oJP:'日本語'},
+  {v:'bring',  o:'a book',            oJP:'本'},
+  {v:'bring',  o:'an umbrella',       oJP:'かさ'},
+  {v:'break',  o:'the window',        oJP:'窓'},
+  {v:'wait',   o:'for the bus',       oJP:'バス',   particle:'を'},
+  {v:'work',   o:'at the store',      oJP:'その店', particle:'で'},
+];
+function pickVO(){
+  const pair = pick(VERB_OBJECT_PAIRS);
+  return { v: VERBS.find(x=>x.base===pair.v), o: pair.o, oJP: pair.oJP, particle: pair.particle||'を' };
+}
+
+const SUBJECTS = [
+  {t:'I',           third:false, plural:false},
+  {t:'You',         third:false, plural:true},
+  {t:'He',          third:true,  plural:false},
+  {t:'She',         third:true,  plural:false},
+  {t:'Tom',         third:true,  plural:false},
+  {t:'My sister',   third:true,  plural:false},
+  {t:'My father',   third:true,  plural:false},
+  {t:'Yui',         third:true,  plural:false},
+  {t:'We',          third:false, plural:true},
+  {t:'They',        third:false, plural:true},
+  {t:'My parents',  third:false, plural:true},
+  {t:'The students',third:false, plural:true},
+];
+
+function beVerb(subj){
+  if(subj.t==='I') return 'am';
+  if(subj.third) return 'is';
+  return 'are';
+}
+function haveVerb(subj){ return subj.third ? 'has' : 'have'; }
+function wasWere(subj){ return (subj.t==='I'||subj.third) ? 'was' : 'were'; }
+function doAux(subj){ return subj.third ? 'does' : 'do'; }
+function negDo(subj){ return subj.third ? "doesn't" : "don't"; }
+function negBeWord(be){ return {am:'am not', is:"isn't", are:"aren't", was:"wasn't", were:"weren't"}[be]; }
+function negHave(subj){ return subj.third ? "hasn't" : "haven't"; }
+/* Randomly choose the sentence form so affirmative / negative / question
+   questions come up in equal measure across a session. */
+function pickForm(){ return pick(['aff','neg','q']); }
+
+
+const ADJECTIVES = [
+  {base:'tall', comp:'taller', sup:'tallest', jp:'背が高い'},
+  {base:'old', comp:'older', sup:'oldest', jp:'年をとった・古い'},
+  {base:'young', comp:'younger', sup:'youngest', jp:'若い'},
+  {base:'fast', comp:'faster', sup:'fastest', jp:'速い'},
+  {base:'small', comp:'smaller', sup:'smallest', jp:'小さい'},
+  {base:'large', comp:'larger', sup:'largest', jp:'大きい'},
+  {base:'easy', comp:'easier', sup:'easiest', jp:'簡単な', jpPred:'簡単だ'},
+  {base:'busy', comp:'busier', sup:'busiest', jp:'忙しい'},
+  {base:'hot', comp:'hotter', sup:'hottest', jp:'暑い'},
+  {base:'big', comp:'bigger', sup:'biggest', jp:'大きい'},
+  {base:'interesting', comp:'more interesting', sup:'most interesting', jp:'おもしろい'},
+  {base:'difficult', comp:'more difficult', sup:'most difficult', jp:'難しい'},
+  {base:'beautiful', comp:'more beautiful', sup:'most beautiful', jp:'美しい'},
+  {base:'important', comp:'more important', sup:'most important', jp:'重要な', jpPred:'重要だ'},
+  {base:'popular', comp:'more popular', sup:'most popular', jp:'人気のある', jpPred:'人気がある'},
+  {base:'good', comp:'better', sup:'best', jp:'よい'},
+  {base:'bad', comp:'worse', sup:'worst', jp:'悪い'},
+];
+
+const NAMES = ['Tom','Ken','Yui','Mika','Aki','Sara','Emma','Jack'];
+const PLACES=['the library','the park','the classroom','the station','the museum','the gym'];
+
+/* ---------------------------------------------------------
+   question generators — each returns
+   { stem: string with "___" marker, jp: japanese gloss (optional),
+     choices: [4 strings], answer: correct string, explain: string }
+--------------------------------------------------------- */
+
+function genPresentSimple(){
+  const s=pick(SUBJECTS), {v,o,oJP,particle}=pickVO();
+  const adv=pick(['every day','usually','always','often','every morning','every weekend']);
+  const form=pickForm();
+  const jpBase=`${subjJP(s)}は${timeJP(adv)}${oJP}${particle}`;
+  const jpAff=`${jpBase}${v.jp}。`, jpNeg=`${jpBase}${v.jpNai}。`, jpQ=`${jpBase}${v.jp}か。`;
+  if(form==='neg'){
+    const correct=`${negDo(s)} ${v.base}`;
+    const wrongAgree = s.third ? `don't ${v.base}` : `doesn't ${v.base}`;
+    const choices=uniqChoices(correct,[wrongAgree, `not ${v.base}`, `${negDo(s)} ${v.ing}`]);
+    return{
+      stem:`${s.t} ___ ${o} ${adv}.`,
+      jp:`（${v.jp}／「〜しない」という否定文にしよう）`,
+      full:jpNeg, jpDistractors:[jpAff, jpQ],
+      choices, answer:correct,
+      explain:`一般動詞の否定文は〈don't[doesn't]＋動詞の原形〉。主語が ${s.t} なので「${correct}」が正解です（doesn'tのあとも動詞は原形のままにする点に注意）。`
+    };
+  } else if(form==='q'){
+    const correct=doAux(s);
+    const choices=uniqChoices(correct,[s.third?'do':'does', 'is', 'are']);
+    return{
+      stem:`___ ${s.t} ${v.base} ${o} ${adv}?`,
+      jp:`（${v.jp}／「〜しますか？」という疑問文にしよう）`,
+      full:jpQ, jpDistractors:[jpAff, jpNeg],
+      choices, answer:correct,
+      explain:`一般動詞の疑問文は〈Do[Does]＋主語＋動詞の原形…?〉。主語が ${s.t} なので「${correct}」が正解です。`
+    };
+  }
+  const correct = s.third? v.third : v.base;
+  const wrongPerson = s.third? v.base : v.third;
+  const choices=uniqChoices(correct,[wrongPerson, v.ing, v.past, `to ${v.base}`]);
+  return{
+    stem:`${s.t} ___ ${o} ${adv}.`,
+    jp:`（${v.jp} / この文の意味を考えて、正しい動詞の形を選ぼう）`,
+    full:jpAff, jpDistractors:[jpNeg, jpQ],
+    choices, answer:correct,
+    explain: s.third
+      ? `主語が三人称単数（${s.t}）なので、現在形の動詞には -(e)s を付けて「${correct}」にします。`
+      : `主語が ${s.t} のときは、現在形でも動詞は原形「${correct}」のままです（三人称単数のときだけ -(e)s が付きます）。`
+  };
+}
+
+function genPresentProg(){
+  const s=pick(SUBJECTS), {v,o,oJP,particle}=pickVO();
+  const time=pick(['now','right now','at the moment']);
+  const be=beVerb(s);
+  const form=pickForm();
+  const jpBase=`${subjJP(s)}は${timeJP(time)}${oJP}${particle}${v.jpTe}`;
+  const jpAff=`${jpBase}いる。`, jpNeg=`${jpBase}いない。`, jpQ=`${jpBase}いるか。`;
+  if(form==='neg'){
+    const negBe=negBeWord(be);
+    const correct=`${negBe} ${v.ing}`;
+    const choices=uniqChoices(correct,[`${be} ${v.ing}`, `${negBe} ${v.base}`, `${negDo(s)} ${v.ing}`]);
+    return{
+      stem:`${s.t} ___ ${o} ${time}.`,
+      jp:`（${v.jp}／「今〜していない」という否定文にしよう）`,
+      full:jpNeg, jpDistractors:[jpAff, jpQ],
+      choices, answer:correct,
+      explain:`現在進行形の否定文は〈be動詞の否定形＋動詞のing形〉。主語 ${s.t} には "${negBe}" を使うので「${correct}」が正解です。`
+    };
+  } else if(form==='q'){
+    const correct=cap(be);
+    const wrongBe=['am','is','are'].filter(x=>x!==be).map(cap);
+    const choices=uniqChoices(correct,[...wrongBe,'Do']);
+    return{
+      stem:`___ ${s.t} ${v.ing} ${o} ${time}?`,
+      jp:`（${v.jp}／「今〜していますか？」という疑問文にしよう）`,
+      full:jpQ, jpDistractors:[jpAff, jpNeg],
+      choices, answer:correct,
+      explain:`現在進行形の疑問文は〈be動詞＋主語＋動詞のing形…?〉。主語 ${s.t} に合う be動詞は「${correct}」です。`
+    };
+  }
+  const correct=`${be} ${v.ing}`;
+  const choices=uniqChoices(correct,[s.third?v.third:v.base, `to ${v.base}`, `${be} ${v.base}`]);
+  return{
+    stem:`${s.t} ___ ${o} ${time}.`,
+    jp:`（${v.jp}／「今まさにしていること」を表す形にしよう）`,
+    full:jpAff, jpDistractors:[jpNeg, jpQ],
+    choices, answer:correct,
+    explain:`「今〜している」は現在進行形〈am/is/are + 動詞のing形〉。主語が ${s.t} なので be動詞は "${be}" を使い、「${correct}」となります。`
+  };
+}
+
+function genPastSimple(){
+  const s=pick(SUBJECTS), {v,o,oJP,particle}=pickVO();
+  const time=pick(['yesterday','last week','two days ago','last night','last Sunday']);
+  const form=pickForm();
+  const jpBase=`${subjJP(s)}は${timeJP(time)}${oJP}${particle}`;
+  const jpAff=`${jpBase}${v.jpPast}。`, jpNeg=`${jpBase}${v.jpNai.replace(/ない$/,'なかった')}。`, jpQ=`${jpBase}${v.jp}か。`;
+  if(form==='neg'){
+    const correct=`didn't ${v.base}`;
+    const choices=uniqChoices(correct,[`didn't ${v.ing}`, `${negDo(s)} ${v.past}`, `not ${v.past}`]);
+    return{
+      stem:`${s.t} ___ ${o} ${time}.`,
+      jp:`（${v.jp}／「〜しなかった」という過去の否定文にしよう）`,
+      full:jpNeg, jpDistractors:[jpAff, jpQ],
+      choices, answer:correct,
+      explain:`過去の否定文は主語に関係なく〈didn't＋動詞の原形〉。過去形をそのまま使った "didn't ${v.past}" は誤りなので注意しよう。「${correct}」が正解です。`
+    };
+  } else if(form==='q'){
+    const correct='Did';
+    const choices=uniqChoices(correct,['Do','Does','Was']);
+    return{
+      stem:`___ ${s.t} ${v.base} ${o} ${time}?`,
+      jp:`（${v.jp}／「〜しましたか？」という過去の疑問文にしよう）`,
+      full:jpQ, jpDistractors:[jpAff, jpNeg],
+      choices, answer:correct,
+      explain:`過去の疑問文は主語に関係なく〈Did＋主語＋動詞の原形…?〉。「${correct}」が正解です。`
+    };
+  }
+  const correct=v.past;
+  const choices=uniqChoices(correct,[s.third?v.third:v.base, v.ing, v.pp!==v.past?v.pp:v.ing+'ed', `to ${v.base}`]);
+  return{
+    stem:`${s.t} ___ ${o} ${time}.`,
+    jp:`（${v.jp}／過去のことを表す形にしよう）`,
+    full:jpAff, jpDistractors:[jpNeg, jpQ],
+    choices, answer:correct,
+    explain:`文末に "${time}" があるので過去のことだと分かります。過去形は主語に関係なく同じ形で、"${v.base}" の過去形は「${correct}」です。`
+  };
+}
+
+function genPastProg(){
+  const s=pick(SUBJECTS), {v,o,oJP,particle}=pickVO();
+  const time=pick(['at seven yesterday evening','at that time','when I called','at noon yesterday']);
+  const be=wasWere(s);
+  const form=pickForm();
+  const jpBase=`${subjJP(s)}は${timeJP(time)}${oJP}${particle}${v.jpTe}`;
+  const jpAff=`${jpBase}いた。`, jpNeg=`${jpBase}いなかった。`, jpQ=`${jpBase}いたか。`;
+  if(form==='neg'){
+    const negBe=negBeWord(be);
+    const correct=`${negBe} ${v.ing}`;
+    const choices=uniqChoices(correct,[`${be} ${v.ing}`, `${negBe} ${v.base}`, `didn't ${v.ing}`]);
+    return{
+      stem:`${s.t} ___ ${o} ${time}.`,
+      jp:`（${v.jp}／「そのとき〜していなかった」という否定文にしよう）`,
+      full:jpNeg, jpDistractors:[jpAff, jpQ],
+      choices, answer:correct,
+      explain:`過去進行形の否定文は〈was/wereの否定形＋動詞のing形〉。主語 ${s.t} には "${negBe}" を使うので「${correct}」が正解です。`
+    };
+  } else if(form==='q'){
+    const correct=cap(be);
+    const choices=uniqChoices(correct,[be==='was'?'Were':'Was', 'Is', 'Did']);
+    return{
+      stem:`___ ${s.t} ${v.ing} ${o} ${time}?`,
+      jp:`（${v.jp}／「そのとき〜していましたか？」という疑問文にしよう）`,
+      full:jpQ, jpDistractors:[jpAff, jpNeg],
+      choices, answer:correct,
+      explain:`過去進行形の疑問文は〈Was/Were＋主語＋動詞のing形…?〉。主語 ${s.t} に合う be動詞は「${correct}」です。`
+    };
+  }
+  const correct=`${be} ${v.ing}`;
+  const choices=uniqChoices(correct,[v.past, `${be} ${v.base}`, v.third]);
+  return{
+    stem:`${s.t} ___ ${o} ${time}.`,
+    jp:`（${v.jp}／「そのとき〜しているところだった」という意味にしよう）`,
+    full:jpAff, jpDistractors:[jpNeg, jpQ],
+    choices, answer:correct,
+    explain:`「そのとき〜していた」は過去進行形〈was/were + 動詞のing形〉。主語 ${s.t} には "${be}" を使うので「${correct}」が正解です。`
+  };
+}
+
+function genPresentPerfect(){
+  const s=pick(SUBJECTS), {v,o,oJP,particle}=pickVO();
+  const have=haveVerb(s);
+  const sJ=subjJP(s);
+  const form=pickForm();
+  const jpNegYet=`${sJ}はまだ${oJP}${particle}${v.jpTe}いない。`;
+  const jpQYet=`${sJ}はもう${oJP}${particle}${v.jpPast}か。`;
+  const jpAffAlready=`${sJ}はすでに${oJP}${particle}${v.jpPast}。`;
+
+  if(form==='neg'){
+    const correct=`${negHave(s)} ${v.pp}`;
+    const choices=uniqChoices(correct,[`${have} ${v.pp}`, `${negDo(s)} ${v.base}`, `not ${have} ${v.pp}`]);
+    return{
+      stem:`${s.t} ___ (${v.base}) ${o} yet.`,
+      jp:`（${v.jp}／「まだ〜していない」という現在完了の否定文にしよう）`,
+      full:jpNegYet, jpDistractors:[jpAffAlready, jpQYet],
+      choices, answer:correct,
+      explain:`現在完了の否定文は〈have[has] not＋過去分詞〉。主語 ${s.t} には "${negHave(s)}" を使うので「${correct}」が正解です。`
+    };
+  }
+  if(form==='q'){
+    const correct=cap(have);
+    const choices=uniqChoices(correct,[correct==='Has'?'Have':'Has', 'Did', 'Do']);
+    return{
+      stem:`___ ${s.t} ${v.pp} ${o} yet?`,
+      jp:`（${v.jp}／「もう〜しましたか？」という現在完了の疑問文にしよう）`,
+      full:jpQYet, jpDistractors:[jpAffAlready, jpNegYet],
+      choices, answer:correct,
+      explain:`現在完了の疑問文は〈Have[Has]＋主語＋過去分詞…?〉。主語 ${s.t} に合うのは「${correct}」です。`
+    };
+  }
+
+  const kind=pick(['already','just','since','for','never','many times']);
+  const time = kind==='since' ? 'since 2020' : kind==='for' ? 'for three years' : kind;
+  const correct=`${have} ${v.pp}`;
+  const choices=uniqChoices(correct,[v.past, s.third?v.third:v.base, v.ing, `to ${v.base}`]);
+  const stemBase = (kind==='already'||kind==='just')
+    ? `${s.t} ___ ${kind} (${v.base}) ${o}.`
+    : `${s.t} ___ (${v.base}) ${o} ${time}.`;
+  let full;
+  if(kind==='already') full=jpAffAlready;
+  else if(kind==='just') full=`${sJ}はちょうど${oJP}${particle}${v.jpPast}ところだ。`;
+  else if(kind==='since') full=`${sJ}は2020年からずっと${oJP}${particle}${v.jpTe}いる。`;
+  else if(kind==='for') full=`${sJ}は3年間ずっと${oJP}${particle}${v.jpTe}いる。`;
+  else if(kind==='never') full=`${sJ}は一度も${oJP}${particle}${v.jpPast}ことがない。`;
+  else full=`${sJ}は何度も${oJP}${particle}${v.jpPast}ことがある。`;
+  return{
+    stem:stemBase,
+    jp:`（${v.jp}／現在完了形〈have[has]+過去分詞〉にしよう）`,
+    full, jpDistractors:[jpNegYet, jpQYet],
+    choices, answer:correct,
+    explain:`"${kind==='since'?'since 2020':kind==='for'?'for three years':kind}" のような語は現在完了形の目印です。主語 ${s.t} には "${have}" を使い、過去分詞は "${v.pp}" なので「${correct}」となります。`
+  };
+}
+
+function genPresentPerfectProg(){
+  const okBases=['study','play','wait','work','run','read'];
+  const s=pick(SUBJECTS);
+  const pair=pick(VERB_OBJECT_PAIRS.filter(p=>okBases.includes(p.v)));
+  const v=VERBS.find(x=>x.base===pair.v), o=pair.o, oJP=pair.oJP, particle=pair.particle||'を';
+  const time=pick(['for two hours','for a long time','since this morning','since 9 a.m']);
+  const have=haveVerb(s);
+  const form=pickForm();
+  const jpBase=`${subjJP(s)}は${timeJP(time)}、ずっと${oJP}${particle}${v.jpTe}`;
+  const jpAff=`${jpBase}いる。`, jpNeg=`${jpBase}いるわけではない。`, jpQ=`${jpBase}いるのか。`;
+  if(form==='neg'){
+    const correct=`${negHave(s)} been ${v.ing}`;
+    const choices=uniqChoices(correct,[`${negDo(s)} been ${v.ing}`, `${have} not ${v.ing}`, `${negHave(s)} ${v.pp}`]);
+    return{
+      stem:`${s.t} ___ ${o} ${time}.`,
+      jp:`（ずっと〜し続けているわけではない、という否定の形にしよう）`,
+      full:jpNeg, jpDistractors:[jpAff, jpQ],
+      choices, answer:correct,
+      explain:`現在完了進行形の否定は〈haven't[hasn't] been + 動詞のing形〉。主語 ${s.t} なので「${correct}」が正解です。`
+    };
+  } else if(form==='q'){
+    const correct=have;
+    const choices=uniqChoices(correct,[have==='have'?'has':'have', beVerb(s), doAux(s)]);
+    return{
+      stem:`___ ${s.t} been ${v.ing} ${o} ${time}?`,
+      jp:`（ずっと〜し続けているのか、とたずねる疑問文にしよう）`,
+      full:jpQ, jpDistractors:[jpAff, jpNeg],
+      choices, answer:correct,
+      explain:`現在完了進行形の疑問文は〈Have[Has] + 主語 + been + 動詞のing形…?〉。主語 ${s.t} なので「${correct}」が正解です。`
+    };
+  }
+  const correct=`${have} been ${v.ing}`;
+  const choices=uniqChoices(correct,[`${have} ${v.ing}`, `${beVerb(s)} ${v.ing}`, s.third?(v.third||v.base+'s'):v.base]);
+  return{
+    stem:`${s.t} ___ ${o} ${time}.`,
+    jp:`（ずっと〜し続けている、という継続を強調する形にしよう）`,
+    full:jpAff, jpDistractors:[jpNeg, jpQ],
+    choices, answer:correct,
+    explain:`動作がずっと続いていることを強調するときは現在完了進行形〈have[has] been + 動詞のing形〉を使います。主語 ${s.t} なので「${correct}」が正解です。`
+  };
+}
+
+function genPastPerfect(){
+  const s1=pick(SUBJECTS), s2=pick(SUBJECTS.filter(x=>x!==s1)), {v,o,oJP,particle}=pickVO();
+  const correct=`had ${v.pp}`;
+  const choices=uniqChoices(correct,[v.past, `${haveVerb(s1)} ${v.pp}`, v.ing]);
+  const jpBase=`${subjJP(s2)}が到着するまでに、${subjJP(s1)}は`;
+  // same two subjects/object — near-miss distractors mix up "already
+  // finished beforehand" with "not yet done" and "still in the middle of it"
+  const jpDistractors=[
+    `${jpBase}まだ${oJP}${particle}${v.jpTe}いなかった。`,
+    `${jpBase}ちょうど${oJP}${particle}${v.jpTe}いるところだった。`,
+  ];
+  return{
+    stem:`By the time ${s2.t.toLowerCase()==='i'?'I':s2.t} arrived, ${s1.t} ___ ${o}.`,
+    jp:`（〜が到着する前に、すでに終わっていたことを表す形にしよう）`,
+    full:`${jpBase}すでに${oJP}${particle}${v.jpTe}しまっていた。`, jpDistractors,
+    choices, answer:correct,
+    explain:`過去のある時点より前に完了していたことは過去完了形〈had + 過去分詞〉で表します。「${correct}」が正解です。`
+  };
+}
+
+function genFuture(){
+  const s=pick(SUBJECTS), {v,o,oJP,particle}=pickVO();
+  const willKind = Math.random()<0.5;
+  const form=pickForm();
+  const be=beVerb(s);
+
+  if(willKind){
+    const jpWAff=`${subjJP(s)}は今すぐ${oJP}${particle}${v.jp}よ。`;
+    const jpWNeg=`${subjJP(s)}は${oJP}${particle}${v.jpNai}よ。`;
+    const jpWQ=`${subjJP(s)}は${oJP}${particle}${v.jp}か。`;
+    if(form==='neg'){
+      const correct=`won't ${v.base}`;
+      const choices=uniqChoices(correct,[`will ${v.base}`, `won't ${v.ing}`, `${negBeWord(be)} going to ${v.base}`]);
+      return{
+        stem:`${s.t} ___ (${v.base}) ${o}. (a decision NOT to do it, made on the spot)`,
+        jp:`（${v.jp}／その場で「〜しない」と決めた否定文にしよう）`,
+        full:jpWNeg, jpDistractors:[jpWAff, jpWQ],
+        choices, answer:correct,
+        explain:`その場での否定の決定は "won't（will not）＋動詞の原形" で表します。「${correct}」が正解です。`
+      };
+    }
+    if(form==='q'){
+      const correct='Will';
+      const choices=uniqChoices(correct,['Is','Does','Are']);
+      return{
+        stem:`___ ${s.t} ${v.base} ${o} right now?`,
+        jp:`（${v.jp}／「〜しますか？」とその場でたずねる疑問文にしよう）`,
+        full:jpWQ, jpDistractors:[jpWAff, jpWNeg],
+        choices, answer:correct,
+        explain:`will の疑問文は〈Will＋主語＋動詞の原形…?〉。空所には「${correct}」が入ります。`
+      };
+    }
+    const correct=`will ${v.base}`;
+    const choices=uniqChoices(correct,[`is going to ${v.base}`, s.third?v.third:v.base, v.past, `to ${v.base}`]);
+    return{
+      stem:`A: What are you going to do? B: OK, ${s.t} ___ (${v.base}) ${o} right now. (a decision made on the spot)`,
+      jp:'（その場で思いついて決めたことなので will を使おう）',
+      full:jpWAff, jpDistractors:[jpWNeg, jpWQ],
+      choices, answer:correct,
+      explain:`その場で思いついた決定は "will + 動詞の原形" で表します。前もって決めていた予定には "be going to" を使う、という違いも覚えておこう。`
+    };
+  } else {
+    const jpGAff=`${subjJP(s)}は明日${oJP}${particle}${v.jp}予定だ。`;
+    const jpGNeg=`${subjJP(s)}は明日${oJP}${particle}${v.jpNai}予定だ。`;
+    const jpGQ=`${subjJP(s)}は明日${oJP}${particle}${v.jp}予定か。`;
+    if(form==='neg'){
+      const negBe=negBeWord(be);
+      const correct=`${negBe} going to ${v.base}`;
+      const choices=uniqChoices(correct,[`${be} going to ${v.base}`, `${negBe} go to ${v.base}`, `${negBe} going ${v.base}`]);
+      return{
+        stem:`${s.t} ___ (${v.base}) ${o} tomorrow. (It's NOT planned.)`,
+        jp:`（${v.jp}／「〜する予定はない」という否定文にしよう）`,
+        full:jpGNeg, jpDistractors:[jpGAff, jpGQ],
+        choices, answer:correct,
+        explain:`be going to の否定文は〈be動詞の否定形＋going to＋動詞の原形〉。主語 ${s.t} には "${negBe}" を使うので「${correct}」が正解です。`
+      };
+    }
+    if(form==='q'){
+      const correct=cap(be);
+      const choices=uniqChoices(correct,['Will','Does', be==='is'?'Are':'Is']);
+      return{
+        stem:`___ ${s.t} going to ${v.base} ${o} tomorrow?`,
+        jp:`（${v.jp}／「〜する予定ですか？」という疑問文にしよう）`,
+        full:jpGQ, jpDistractors:[jpGAff, jpGNeg],
+        choices, answer:correct,
+        explain:`be going to の疑問文は〈be動詞＋主語＋going to＋動詞の原形…?〉。主語 ${s.t} に合う be動詞は「${correct}」です。`
+      };
+    }
+    const correct=`${be} going to ${v.base}`;
+    const choices=uniqChoices(correct,[`will ${v.base}`, s.third?v.third:v.base, v.past, `to ${v.base}`]);
+    return{
+      stem:`${s.t} ___ (${v.base}) ${o} tomorrow. (It's already planned.)`,
+      jp:'（すでに決まっている予定を表す形にしよう）',
+      full:jpGAff, jpDistractors:[jpGNeg, jpGQ],
+      choices, answer:correct,
+      explain:`前もって決めてある予定は "be going to + 動詞の原形" で表します。主語 ${s.t} には "${be}" を使うので「${correct}」となります。`
+    };
+  }
+}
+
+const PASSIVE_PAIRS = [
+  {thing:'This letter',   thingJP:'この手紙',       verbBase:'write', plural:false},
+  {thing:'This song',     thingJP:'この歌',         verbBase:'sing',  plural:false},
+  {thing:'This book',     thingJP:'この本',         verbBase:'read',  plural:false},
+  {thing:'This computer', thingJP:'このコンピューター', verbBase:'use', plural:false},
+  {thing:'These cookies', thingJP:'このクッキー',    verbBase:'make', plural:true},
+  {thing:'This car',      thingJP:'この車',         verbBase:'buy',   plural:false},
+  {thing:'The window',    thingJP:'この窓',         verbBase:'break', plural:false},
+];
+/* jp helpers for passive tense/negative/progressive forms — all derived
+   mechanically from jpPassive/jpPassivePast because every passive form in
+   Japanese ends in れる／られる, so the suffix swap is always reliable. */
+function passiveNegJP(v){ return v.jpPassive.replace(/れる$/,'れない'); }
+function passiveNegPastJP(v){ return v.jpPassivePast.replace(/れた$/,'れなかった'); }
+function passiveProgJP(v){ return v.jpPassive.replace(/れる$/,'れている'); }
+function passiveProgNegJP(v){ return v.jpPassive.replace(/れる$/,'れていない'); }
+
+const PASSIVE_TIME = {
+  pres:  ['every year','by many people'],
+  past:  ['last year','in 1998'],
+  future:['next year','tomorrow'],
+  prog:  ['right now','at this moment'],
+};
+
+function genPassive(){
+  const pair=pick(PASSIVE_PAIRS);
+  const v=VERBS.find(x=>x.base===pair.verbBase);
+  const tense=pick(['pres','past','future','prog']);
+  const form=pick(['aff','neg','q']);
+  const timeWord=pick(PASSIVE_TIME[tense]);
+  const plural=pair.plural;
+  const be = tense==='pres' ? (plural?'are':'is') : tense==='past' ? (plural?'were':'was') : (plural?'are':'is');
+  const negBeMap = {is:"isn't", are:"aren't", was:"wasn't", were:"weren't"};
+
+  let correct, distractors, stem, full, jpDistractors, explain;
+
+  if(tense==='pres' || tense==='past'){
+    const affJP=`${pair.thingJP}は${timeJP(timeWord)}${tense==='pres'?v.jpPassive:v.jpPassivePast}。`;
+    const negJP=`${pair.thingJP}は${timeJP(timeWord)}${tense==='pres'?passiveNegJP(v):passiveNegPastJP(v)}。`;
+    const qJP=`${pair.thingJP}は${timeJP(timeWord)}${tense==='pres'?v.jpPassive:v.jpPassivePast}か。`;
+    if(form==='aff'){
+      correct=`${be} ${v.pp}`;
+      distractors=[v.past, `${be} ${v.ing}`, (tense==='pres'?(plural?'is':'are'):(plural?'was':'were'))+` ${v.pp}`];
+      stem=`${pair.thing} ___ (${v.base}) ${timeWord}.`;
+      full=affJP; jpDistractors=[negJP, qJP];
+      explain=`受動態は〈be動詞＋過去分詞〉。主語 "${pair.thing}" と時を表す語 "${timeWord}" に合わせて be動詞を選ぶと「${correct}」になります。`;
+    } else if(form==='neg'){
+      const negBe=negBeMap[be];
+      correct=`${negBe} ${v.pp}`;
+      distractors=[`${be} ${v.pp}`, `${negBe} ${v.ing}`, `not ${be} ${v.pp}`];
+      stem=`${pair.thing} ___ (${v.base}) ${timeWord}.`;
+      full=negJP; jpDistractors=[affJP, qJP];
+      explain=`受動態の否定文は〈be動詞＋not＋過去分詞〉。「${correct}」のように be動詞を否定形にします。`;
+    } else {
+      correct=cap(be);
+      const otherBe = tense==='pres' ? (be==='is'?'Are':'Is') : (be==='was'?'Were':'Was');
+      const crossTenseBe = tense==='pres' ? (plural?'Were':'Was') : (plural?'Are':'Is');
+      distractors=[otherBe, crossTenseBe, 'Does'];
+      stem=`___ ${pair.thing} ${v.pp} ${timeWord}?`;
+      full=qJP; jpDistractors=[affJP, negJP];
+      explain=`受動態の疑問文は〈be動詞＋主語＋過去分詞〉の語順にします。主語 "${pair.thing}" と時を表す語 "${timeWord}" に合う be動詞は「${correct}」です。`;
+    }
+  } else if(tense==='future'){
+    const affJP=`${pair.thingJP}は${timeJP(timeWord)}${v.jpPassive}だろう。`;
+    const negJP=`${pair.thingJP}は${timeJP(timeWord)}${passiveNegJP(v)}だろう。`;
+    const qJP=`${pair.thingJP}は${timeJP(timeWord)}${v.jpPassive}だろうか。`;
+    if(form==='aff'){
+      correct=`will be ${v.pp}`;
+      distractors=[`will ${v.pp}`, `is going to ${v.pp}`, `will being ${v.pp}`];
+      stem=`${pair.thing} ___ (${v.base}) ${timeWord}.`;
+      full=affJP; jpDistractors=[negJP, qJP];
+      explain=`未来の受動態は〈will be＋過去分詞〉。「${correct}」が正解です。be を忘れて "will ${v.pp}" としないよう注意しよう。`;
+    } else if(form==='neg'){
+      correct=`won't be ${v.pp}`;
+      distractors=[`will be ${v.pp}`, `won't ${v.pp}`, `not will be ${v.pp}`];
+      stem=`${pair.thing} ___ (${v.base}) ${timeWord}.`;
+      full=negJP; jpDistractors=[affJP, qJP];
+      explain=`未来の受動態の否定は〈won't be＋過去分詞〉。「${correct}」が正解です。`;
+    } else {
+      correct='Will';
+      distractors=['Is','Does','Do'];
+      stem=`___ ${pair.thing} be ${v.pp} ${timeWord}?`;
+      full=qJP; jpDistractors=[affJP, negJP];
+      explain=`未来の受動態の疑問文は〈Will＋主語＋be＋過去分詞〉。空所には「${correct}」が入ります。`;
+    }
+  } else { // prog
+    const affJP=`${pair.thingJP}は${timeJP(timeWord)}${passiveProgJP(v)}。`;
+    const negJP=`${pair.thingJP}は${timeJP(timeWord)}${passiveProgNegJP(v)}。`;
+    const qJP=`${pair.thingJP}は${timeJP(timeWord)}${passiveProgJP(v)}か。`;
+    if(form==='aff'){
+      correct=`${be} being ${v.pp}`;
+      distractors=[`${be} ${v.pp}`, `${be} be ${v.pp}`, `${be} ${v.ing}`];
+      stem=`${pair.thing} ___ (${v.base}) ${timeWord}.`;
+      full=affJP; jpDistractors=[negJP, qJP];
+      explain=`「今まさに〜されている」という進行形の受動態は〈be動詞＋being＋過去分詞〉。「${correct}」が正解です。`;
+    } else if(form==='neg'){
+      const negBe=negBeMap[be];
+      correct=`${negBe} being ${v.pp}`;
+      distractors=[`${be} being ${v.pp}`, `${negBe} be ${v.pp}`, `${negBe} ${v.pp}`];
+      stem=`${pair.thing} ___ (${v.base}) ${timeWord}.`;
+      full=negJP; jpDistractors=[affJP, qJP];
+      explain=`進行形の受動態の否定は〈be動詞の否定形＋being＋過去分詞〉。「${correct}」が正解です。`;
+    } else {
+      correct=cap(be);
+      distractors=[be==='is'?'Are':'Is', 'Does', 'Will'];
+      stem=`___ ${pair.thing} being ${v.pp} ${timeWord}?`;
+      full=qJP; jpDistractors=[affJP, negJP];
+      explain=`進行形の受動態の疑問文は〈be動詞＋主語＋being＋過去分詞〉。空所には「${correct}」が入ります。`;
+    }
+  }
+
+  const choices=uniqChoices(correct, distractors);
+  return{ stem, jp:'（「〜される」という受け身の意味にしよう）', full, jpDistractors, choices, answer:correct, explain };
+}
+
+function genModal(){
+  const scenarios=[
+    {stem:`You ___ wear a seatbelt in this country. It's the law.`, jp:'（法律で決まっている→義務）', answer:'must', options:['must','may','should','can'],
+     full:'この国ではシートベルトを着用しなければならない。それが法律だ。',
+     explain:`法律や規則で決まっている強い義務は "must" で表します。`,
+     jpDistractors:['この国ではシートベルトを着用してもよい。強制ではない。','この国ではシートベルトを着用する必要はない。','この国ではシートベルトを着用してはいけない。']},
+    {stem:`It's just a suggestion — you ___ come with us if you like, but it's OK if you don't.`, jp:'（〜してもよい、という許可・提案）', answer:'may', options:['may','must','have to','should'],
+     full:'これはただの提案です。よければ一緒に来てもいいですが、来なくても大丈夫です。',
+     explain:`軽い許可や「〜してもよい」は "may"（"can" も使われます）。`,
+     jpDistractors:['これは決まりなので、必ず一緒に来なければならない。','一緒に来ないほうがいいと思います。','一緒に来ることはできません。']},
+    {stem:`You look tired. You ___ get some rest.`, jp:'（アドバイス）', answer:'should', options:['should','must','can','will'],
+     full:'疲れているようだね。少し休んだほうがいいよ。',
+     explain:`アドバイスや「〜したほうがよい」は "should" を使います。`,
+     jpDistractors:['疲れているようだね。休む必要はまったくないよ。','疲れているようだね。休んではいけないよ。','疲れているようだね。休むことができるよ。']},
+    {stem:`Ken ___ speak three languages.`, jp:'（能力）', answer:'can', options:['can','must','should','may'],
+     full:'ケンは3か国語を話すことができる。',
+     explain:`「〜できる」という能力は "can" で表します。`,
+     jpDistractors:['ケンは3か国語を話さなければならない。','ケンは3か国語を話したほうがいい。','ケンはまだ3か国語を話せない。']},
+    {stem:`It's Sunday tomorrow, so you ___ come to school.`, jp:'（不必要）', answer:"don't have to", options:["don't have to",'must not','should not','can not'],
+     full:'明日は日曜日なので、学校に来る必要はない。',
+     explain:`「〜する必要がない」は "don't have to"。"must not"（〜してはいけない＝禁止）との違いに注意しよう。`,
+     jpDistractors:['明日は日曜日なので、学校に来てはいけない。','明日は日曜日でも、学校に来なければならない。','明日は日曜日なので、学校に来ないほうがいい。']},
+    {stem:`This area is dangerous. You ___ swim here.`, jp:'（禁止）', answer:'must not', options:['must not',"don't have to",'may not need to','should'],
+     full:'この場所は危険だ。ここで泳いではいけない。',
+     explain:`「〜してはいけない」という禁止は "must not" で表します。`,
+     jpDistractors:['この場所は危険だが、泳ぐ必要はない。','この場所は危険なので、泳がないほうがいい。','この場所は安全なので、自由に泳いでもよい。']},
+  ];
+  const sc=pick(scenarios);
+  const choices=uniqChoices(sc.answer, sc.options.filter(o=>o!==sc.answer));
+  return{ stem:sc.stem, jp:sc.jp, full:sc.full, jpDistractors:sc.jpDistractors, choices, answer:sc.answer, explain:sc.explain };
+}
+
+function genComparison(){
+  const a=pick(ADJECTIVES);
+  const kind=pick(['comp','sup']);
+  if(kind==='comp'){
+    const n1=pick(NAMES), n2=pick(NAMES.filter(x=>x!==n1));
+    const correct=a.comp;
+    const choices=uniqChoices(correct,[a.base, a.sup, a.base+'er er']);
+    return{
+      stem:`${n1} is ___ (${a.base}) than ${n2}.`,
+      jp:`（${a.jp}／2つ（2人）を比べる形にしよう）`,
+      full:`${NAME_JP[n1]||n1}は${NAME_JP[n2]||n2}より${a.jpPred||a.jp}。`,
+      // same names, same adjective — the classic near-miss mistake is
+      // comparing them the wrong way round
+      jpDistractors:[`${NAME_JP[n2]||n2}は${NAME_JP[n1]||n1}より${a.jpPred||a.jp}。`],
+      choices, answer:correct,
+      explain:`"than" があるので比較級を使います。"${a.base}" の比較級は「${correct}」です（-er を付ける／長い語は more を前に付ける／不規則変化もある、の3パターンを区別しよう）。`
+    };
+  } else {
+    const group=pick(['in his class','in the world','in our school','of the three','in the store']);
+    const correct=a.sup;
+    const wrongSup = a.sup.startsWith('most ') ? a.base+'est' : 'most '+a.base;
+    const choices=uniqChoices(correct,[a.base, a.comp, wrongSup]);
+    return{
+      stem:`This is the ___ (${a.base}) book ${group}.`,
+      jp:`（${a.jp}／3つ以上の中で一番、という形にしよう）`,
+      full:`これは${GROUP_JP[group]||group}一番${a.jp}本だ。`,
+      // same book/group, same adjective — near-miss confuses "the most" with "the second most"
+      jpDistractors:[`これは${GROUP_JP[group]||group}2番目に${a.jp}本だ。`],
+      choices, answer:correct,
+      explain:`"the" と範囲を表す語句（${group}）があるので最上級を使います。"${a.base}" の最上級は「${correct}」です。`
+    };
+  }
+}
+
+function genRelative(){
+  const items=[
+    {stem:'I have a friend ___ can speak French very well.', answer:'who', options:['who','which','whose','whom'],
+     jp:'（先行詞は人／関係代名詞は文の主語）', full:'私にはフランス語をとても上手に話せる友達がいる。',
+     explain:`先行詞が人（a friend）で、あとに動詞（can speak）が続く＝主格なので "who"（"that" も可）を使います。`,
+     jpDistractors:['私にはフランス語をとても上手に話せる先生がいる。','私の友達はフランス語をまったく話せない。','私にはフランス語を勉強したい友達がいる。']},
+    {stem:'This is the book ___ I bought at the store yesterday.', answer:'which', options:['which','who','whose','what'],
+     jp:'（先行詞はもの／関係代名詞は文の目的語）', full:'これは私が昨日お店で買った本だ。',
+     explain:`先行詞がもの（the book）で、あとに〈主語＋動詞〉が続く＝目的格なので "which"（"that" も可）を使います。`,
+     jpDistractors:['これは私が昨日お店で買わなかった本だ。','これは私が今日お店で買う予定の本だ。','これは私の友達が昨日お店で買った本だ。']},
+    {stem:'She is the girl ___ father is a famous doctor.', answer:'whose', options:['whose','who','which','whom'],
+     jp:'（「〜の」という所有の関係）', full:'彼女はお父さんが有名な医者である女の子だ。',
+     explain:`「その子のお父さんが」＝所有の関係なので所有格の関係代名詞 "whose" を使います。`,
+     jpDistractors:['彼女はお母さんが有名な医者である女の子だ。','彼女自身が有名な医者である女の子だ。','彼女はお父さんが医者を目指している女の子だ。']},
+    {stem:'Look at the cat ___ is sleeping on the sofa.', answer:'which', options:['which','who','whose','whom'],
+     jp:'（先行詞は動物／関係代名詞は文の主語）', full:'ソファーで眠っている猫を見て。',
+     explain:`先行詞が動物・もの（the cat）で主格の働きをするときは "which"（"that" も可）を使います。`,
+     jpDistractors:['ソファーで眠っていない猫を見て。','床で眠っている猫を見て。','ソファーで遊んでいる猫を見て。']},
+    {stem:'The man ___ is standing over there is my uncle.', answer:'who', options:['who','which','whose','what'],
+     jp:'（先行詞は人／関係代名詞は文の主語）', full:'あそこに立っている男の人は私のおじだ。',
+     explain:`先行詞が人（the man）で主格の働きをするときは "who" を使います。`,
+     jpDistractors:['あそこに立っている男の人は私の父だ。','あそこに座っている男の人は私のおじだ。','あそこに立っている男の人は私のおじの友達だ。']},
+    {stem:'This is the house ___ I was born.', answer:'where', options:['where','which','who','whose'],
+     jp:'（場所を表す関係副詞）', full:'ここは私が生まれた家だ。',
+     explain:`the house という「場所」を説明していて、あとに完全な文（I was born）が続くので関係副詞 "where" を使います。`,
+     jpDistractors:['ここは私が育った家だ。','ここは私が生まれた場所ではない。','ここは私の両親が生まれた家だ。']},
+  ];
+  const it=pick(items);
+  const choices=uniqChoices(it.answer, it.options.filter(o=>o!==it.answer));
+  return{ stem:it.stem, jp:it.jp, full:it.full, jpDistractors:it.jpDistractors, choices, answer:it.answer, explain:it.explain };
+}
+
+/* ---------------------------------------------------------
+   Infinitive generators (whole-sentence choice format).
+   Rather than filling a blank with "to + base" — which a
+   student can get right by pattern-matching alone, without
+   understanding anything — these show a Japanese sentence
+   and ask the student to pick the one English sentence out
+   of four that actually matches it. Every distractor is a
+   complete, plausible-looking sentence built from a genuine
+   mistake (missing "to", using -ing, using the bare verb,
+   adding a stray preposition, double-marking the verb, etc.),
+   so guessing "if I see 'to base' pick it" no longer works —
+   more than one choice usually contains that shape.
+--------------------------------------------------------- */
+const INF_PICK_JP = '（日本語の意味に合う英文を1つ選ぼう）';
+
+// 不定詞の名詞的用法 is generated dynamically (subject × matrix verb ×
+// verb-object pair, all drawn from the same vetted SUBJECTS/VERB_OBJECT_PAIRS
+// banks used everywhere else in this file) instead of a small fixed item
+// bank, so a single export/session has a very large pool of distinct,
+// grammatically-checked, age-appropriate sentences to draw from.
+const INF_NOUN_TEMPLATES = [
+  { matrix: s => s.third ? 'wants' : 'want',
+    jpFull: (sJ,oJP,p,v) => `${sJ}は${oJP}${p}${v.jpTai}と思っている。`,
+    jpWrong: (sJ,oJP,p,v) => [
+      `${sJ}は${oJP}${p}${v.jpNai}ことに決めた。`,
+      `${sJ}はすでに${oJP}${p}${v.jpTe}しまった。`,
+      `${sJ}は${oJP}${p}${v.jpNai}。`,
+    ],
+    explain: v => `"want" のあとに動詞を続けるときは to＋動詞の原形〈to ${v.base}〉の形にします。"want ${v.ing}"（〜ing）や "want ${v.base}"（原形のみ）は文法的に誤りです。` },
+  { matrix: () => 'decided',
+    jpFull: (sJ,oJP,p,v) => `${sJ}は${oJP}${p}${v.jp}ことに決めた。`,
+    jpWrong: (sJ,oJP,p,v) => [
+      `${sJ}は${oJP}${p}${v.jpNai}ことに決めた。`,
+      `${sJ}はすでに${oJP}${p}${v.jpTe}いた。`,
+      `${sJ}は${oJP}${p}${v.jp}必要はないと決めた。`,
+    ],
+    explain: v => `"decide" のあとは必ず to＋動詞の原形〈to ${v.base}〉。"decided ${v.ing}" のように〜ing を続けることはできません。` },
+  { matrix: s => s.third ? 'needs' : 'need',
+    jpFull: (sJ,oJP,p,v) => `${sJ}は${oJP}${p}${v.jp}必要がある。`,
+    jpWrong: (sJ,oJP,p,v) => [
+      `${sJ}は${oJP}${p}${v.jpNai}ほうがいい。`,
+      `${sJ}はすでに${oJP}${p}${v.jpTe}しまった。`,
+      `${sJ}は${oJP}${p}${v.jpTai}とは思っていない。`,
+    ],
+    explain: v => `"need" のあとは to＋動詞の原形〈to ${v.base}〉。"to ${v.ing}" のように to のあとを〜ing にしてしまうミスに注意しよう。` },
+  { matrix: s => s.third ? 'hopes' : 'hope',
+    jpFull: (sJ,oJP,p,v) => `${sJ}は${oJP}${p}${v.jp}ことを望んでいる。`,
+    jpWrong: (sJ,oJP,p,v) => [
+      `${sJ}は${oJP}${p}${v.jp}ことを避けている。`,
+      `${sJ}はすでに${oJP}${p}${v.jpTe}しまった。`,
+      `${sJ}は${oJP}${p}${v.jpNai}と思っている。`,
+    ],
+    explain: v => `"hope" のあとは to＋動詞の原形〈to ${v.base}〉。動詞をそのまま2つ並べた "hopes ${v.base}" は誤りです。` },
+  { matrix: s => s.third ? 'plans' : 'plan',
+    jpFull: (sJ,oJP,p,v) => `${sJ}は${oJP}${p}${v.jp}ことを計画している。`,
+    jpWrong: (sJ,oJP,p,v) => [
+      `${sJ}は${oJP}${p}${v.jp}ことをやめた。`,
+      `${sJ}はすでに${oJP}${p}${v.jpTe}しまった。`,
+      `${sJ}は${oJP}${p}${v.jp}かどうか迷っている。`,
+    ],
+    explain: v => `"plan" のあとは to＋動詞の原形〈to ${v.base}〉。be動詞と一般動詞を両方使ってしまう "is plan" のような形にも注意。` },
+];
+// a second, more advanced (Eiken 2級-ish) verb/object pool used only for
+// this topic — kept separate from VERB_OBJECT_PAIRS so the basic tense
+// units stay at their easier level, while 不定詞の名詞的用法 (where the
+// same handful of everyday verbs recurring across different sentences was
+// making otherwise-distinct questions feel repetitive) gets a much wider
+// range of vocabulary to draw from.
+const INF_NOUN_EXTRA_VERBS = [
+  {base:'improve',  third:'improves',  ing:'improving',  past:'improved',  pp:'improved',  jp:'上げる',       jpPast:'上げた',       jpTe:'上げて',       jpTai:'上げたい',       jpNai:'上げない'},
+  {base:'solve',    third:'solves',    ing:'solving',    past:'solved',    pp:'solved',    jp:'解決する',     jpPast:'解決した',     jpTe:'解決して',     jpTai:'解決したい',     jpNai:'解決しない'},
+  {base:'protect',  third:'protects',  ing:'protecting', past:'protected', pp:'protected', jp:'守る',         jpPast:'守った',       jpTe:'守って',       jpTai:'守りたい',       jpNai:'守らない'},
+  {base:'join',     third:'joins',     ing:'joining',    past:'joined',    pp:'joined',    jp:'参加する',     jpPast:'参加した',     jpTe:'参加して',     jpTai:'参加したい',     jpNai:'参加しない'},
+  {base:'collect',  third:'collects',  ing:'collecting', past:'collected', pp:'collected', jp:'集める',       jpPast:'集めた',       jpTe:'集めて',       jpTai:'集めたい',       jpNai:'集めない'},
+  {base:'borrow',   third:'borrows',   ing:'borrowing',  past:'borrowed',  pp:'borrowed',  jp:'借りる',       jpPast:'借りた',       jpTe:'借りて',       jpTai:'借りたい',       jpNai:'借りない'},
+  {base:'explain',  third:'explains',  ing:'explaining', past:'explained', pp:'explained', jp:'説明する',     jpPast:'説明した',     jpTe:'説明して',     jpTai:'説明したい',     jpNai:'説明しない'},
+  {base:'memorize', third:'memorizes', ing:'memorizing', past:'memorized', pp:'memorized', jp:'覚える',       jpPast:'覚えた',       jpTe:'覚えて',       jpTai:'覚えたい',       jpNai:'覚えない'},
+  {base:'reserve',  third:'reserves',  ing:'reserving',  past:'reserved',  pp:'reserved',  jp:'予約する',     jpPast:'予約した',     jpTe:'予約して',     jpTai:'予約したい',     jpNai:'予約しない'},
+  {base:'postpone', third:'postpones', ing:'postponing', past:'postponed', pp:'postponed', jp:'延期する',     jpPast:'延期した',     jpTe:'延期して',     jpTai:'延期したい',     jpNai:'延期しない'},
+  {base:'recycle',  third:'recycles',  ing:'recycling',  past:'recycled',  pp:'recycled',  jp:'リサイクルする', jpPast:'リサイクルした', jpTe:'リサイクルして', jpTai:'リサイクルしたい', jpNai:'リサイクルしない'},
+];
+const INF_NOUN_EXTRA_PAIRS = [
+  {v:'improve',  o:'his English skills', oJP:'彼の英語力'},
+  {v:'solve',    o:'the problem',        oJP:'その問題'},
+  {v:'protect',  o:'the environment',    oJP:'環境'},
+  {v:'join',     o:'the tennis club',    oJP:'テニス部', particle:'に'},
+  {v:'collect',  o:'stamps',             oJP:'切手'},
+  {v:'borrow',   o:'a dictionary',       oJP:'辞書'},
+  {v:'explain',  o:'the reason',         oJP:'その理由'},
+  {v:'memorize', o:'the new words',      oJP:'新しい単語'},
+  {v:'reserve',  o:'a table',            oJP:'席'},
+  {v:'postpone', o:'the meeting',        oJP:'会議'},
+  {v:'recycle',  o:'plastic bottles',    oJP:'ペットボトル'},
+];
+function pickInfNounVO(){
+  const pair = pick([...VERB_OBJECT_PAIRS, ...INF_NOUN_EXTRA_PAIRS]);
+  const v = VERBS.find(x=>x.base===pair.v) || INF_NOUN_EXTRA_VERBS.find(x=>x.base===pair.v);
+  return { v, o: pair.o, oJP: pair.oJP, particle: pair.particle||'を' };
+}
+function genInfNoun(){
+  const tpl = pick(INF_NOUN_TEMPLATES);
+  const s = pick(SUBJECTS);
+  const vo = pickInfNounVO();
+  const v = vo.v, oJP = vo.oJP, particle = vo.particle, objText = vo.o;
+  const sJ = subjJP(s);
+  const matrixWord = tpl.matrix(s);
+  const wrongPhrases = [v.ing, v.base, `to ${v.ing}`];
+  const correctPhrase = `to ${v.base}`;
+  const sentence = phrase => `${s.t} ${matrixWord} ${phrase} ${objText}.`;
+  const jpFull = tpl.jpFull(sJ, oJP, particle, v);
+  return {
+    stemHtml: `<span style="font-weight:700;">${jpFull}</span>`,
+    jp: INF_PICK_JP, full: INF_PICK_JP,
+    choices: shuffle([sentence(correctPhrase), ...wrongPhrases.map(sentence)]),
+    answer: sentence(correctPhrase), explain: tpl.explain(v), wide:true,
+    jpDistractors: tpl.jpWrong(sJ, oJP, particle, v),
+    blankStem: `${s.t} ${matrixWord} ___ ${objText}.`,
+    blankAnswer: correctPhrase,
+    blankChoices: uniqChoices(correctPhrase, wrongPhrases),
+    blankJp: jpFull,
+  };
+}
+
+const INF_ADJ_ITEMS = [
+  {jp:'私には今日やるべき宿題がたくさんある。',
+   correct:'I have a lot of homework to do today.',
+   distractors:['I have a lot of homework doing today.','I have a lot of homework do today.','I have a lot of homework for do today.'],
+   explain:`直前の名詞 "homework" を「やるべき〜」と後ろから説明するときは 名詞＋to＋動詞の原形〈homework to do〉の形にします。`,
+   jpDistractors:['私には今日終わらせた宿題がたくさんある。','私には今日の宿題がまったくない。','私は今日宿題をする必要はない。'],
+   blankStem:'I have a lot of homework ___ today.', blankAnswer:'to do', blankOptions:['doing','do','for do']},
+  {jp:'彼女は学校に到着した最初の生徒だった。',
+   correct:'She was the first student to arrive at school.',
+   distractors:['She was the first student arriving at school.','She was the first student arrive at school.','She was the first student for arriving at school.'],
+   explain:`「最初に到着した生徒」のように名詞を後ろから説明するときは 名詞＋to＋動詞の原形〈student to arrive〉の形を使います。`,
+   jpDistractors:['彼女は学校に到着した最後の生徒だった。','彼女は学校に到着した生徒の一人だった。','彼女は学校にまだ到着していない生徒だった。'],
+   blankStem:'She was the first student ___ at school.', blankAnswer:'to arrive', blankOptions:['arriving','arrive','for arriving']},
+  {jp:'何か飲み物をもらえますか。',
+   correct:'Can I have something to drink?',
+   distractors:['Can I have something drinking?','Can I have something drink?','Can I have something for to drink?'],
+   explain:`"something" を「飲むための何か」と説明するときは something＋to＋動詞の原形〈something to drink〉の形にします。`,
+   jpDistractors:['何か食べ物をもらえますか。','飲み物はもう十分もらいました。','飲み物を持っていく必要はありません。'],
+   blankStem:'Can I have something ___?', blankAnswer:'to drink', blankOptions:['drinking','drink','for to drink']},
+  {jp:'私には話す相手が必要だ。',
+   correct:'I need a friend to talk to.',
+   distractors:['I need a friend talking to.','I need a friend talk to.','I need a friend to talking to.'],
+   explain:`「話す（ための）相手」は 名詞＋to＋動詞の原形〈friend to talk to〉。最後の "to" は "talk to someone"（〜と話す）の to が残ったものです。`,
+   jpDistractors:['私には話す相手がいない。','私はすでに友達と話した。','私には友達と話す時間がない。'],
+   blankStem:'I need a friend ___.', blankAnswer:'to talk to', blankOptions:['talking to','talk to','to talking to']},
+  {jp:'彼にはくつろぐ時間がない。',
+   correct:'He has no time to relax.',
+   distractors:['He has no time relaxing.','He has no time relax.','He has no time for relax.'],
+   explain:`「くつろぐ時間」は 名詞＋to＋動詞の原形〈time to relax〉の形で表します。`,
+   jpDistractors:['彼にはくつろぐ時間がたっぷりある。','彼はすでにくつろいだ。','彼はくつろぐ必要はないと思っている。'],
+   blankStem:'He has no time ___.', blankAnswer:'to relax', blankOptions:['relaxing','relax','for relax']},
+  {jp:'今夜は読むべき本が3冊ある。',
+   correct:'I have three books to read tonight.',
+   distractors:['I have three books reading tonight.','I have three books read tonight.','I have three books for reading tonight.'],
+   explain:`「読むべき本」は 名詞＋to＋動詞の原形〈books to read〉の形にします。`,
+   jpDistractors:['今夜はもう本を読み終えた。','今夜は読む本が一冊もない。','今夜は本を読む時間がない。'],
+   blankStem:'I have three books ___ tonight.', blankAnswer:'to read', blankOptions:['reading','read','for reading']},
+  {jp:'私たちには解決すべき問題がある。',
+   correct:'We have a problem to solve.',
+   distractors:['We have a problem solving.','We have a problem solve.','We have a problem for solve.'],
+   explain:`「解決すべき問題」は 名詞＋to＋動詞の原形〈problem to solve〉の形にします。`,
+   jpDistractors:['私たちにはすでに解決した問題がある。','私たちには問題はまったくない。','私たちはその問題を解決する必要はない。'],
+   blankStem:'We have a problem ___.', blankAnswer:'to solve', blankOptions:['solving','solve','for solve']},
+  {jp:'彼にはやるべき仕事がたくさんある。',
+   correct:'He has a lot of work to do.',
+   distractors:['He has a lot of work doing.','He has a lot of work do.','He has a lot of work for do.'],
+   explain:`「やるべき仕事」は 名詞＋to＋動詞の原形〈work to do〉の形にします。`,
+   jpDistractors:['彼にはやるべき仕事が何もない。','彼はすでに仕事を終えた。','彼は仕事をする必要はない。'],
+   blankStem:'He has a lot of work ___.', blankAnswer:'to do', blankOptions:['doing','do','for do']},
+  {jp:'私には着るものが何もない。',
+   correct:'I have nothing to wear.',
+   distractors:['I have nothing wearing.','I have nothing wear.','I have nothing for wear.'],
+   explain:`「着るもの」は 名詞（nothing）＋to＋動詞の原形〈nothing to wear〉の形にします。`,
+   jpDistractors:['私には着るものがたくさんある。','私はすでに服を着た。','私は新しい服を買う必要はない。'],
+   blankStem:'I have nothing ___.', blankAnswer:'to wear', blankOptions:['wearing','wear','for wear']},
+  {jp:'今日は買うべきものがいくつかある。',
+   correct:'I have some things to buy today.',
+   distractors:['I have some things buying today.','I have some things buy today.','I have some things for buying today.'],
+   explain:`「買うべきもの」は 名詞＋to＋動詞の原形〈things to buy〉の形にします。`,
+   jpDistractors:['今日は買うものが何もない。','私はすでに買い物を終えた。','私は今日買い物に行く必要はない。'],
+   blankStem:'I have some things ___ today.', blankAnswer:'to buy', blankOptions:['buying','buy','for buying']},
+  {jp:'彼は最後に部屋を出た人だった。',
+   correct:'He was the last person to leave the room.',
+   distractors:['He was the last person leaving the room.','He was the last person leave the room.','He was the last person for leaving the room.'],
+   explain:`「最後に部屋を出た人」のように名詞を後ろから説明するときは 名詞＋to＋動詞の原形〈person to leave〉の形を使います。`,
+   jpDistractors:['彼は最初に部屋を出た人だった。','彼は部屋にまだ残っている人だった。','彼は部屋に一度も入らなかった人だった。'],
+   blankStem:'He was the last person ___ the room.', blankAnswer:'to leave', blankOptions:['leaving','leave','for leaving']},
+  {jp:'私にはあなたに伝えるべき知らせがある。',
+   correct:'I have some news to tell you.',
+   distractors:['I have some news telling you.','I have some news tell you.','I have some news for tell you.'],
+   explain:`「伝えるべき知らせ」は 名詞＋to＋動詞の原形〈news to tell〉の形にします。`,
+   jpDistractors:['私にはあなたに伝える知らせが何もない。','私はすでにその知らせをあなたに伝えた。','私はその知らせをあなたに伝えるつもりはない。'],
+   blankStem:'I have some news ___ you.', blankAnswer:'to tell', blankOptions:['telling','tell','for tell']},
+];
+
+const INF_ADV_ITEMS = [
+  {jp:'彼女は試験に合格するために一生懸命勉強した。',
+   correct:'She studied hard to pass the exam.',
+   distractors:['She studied hard for passing the exam.','She studied hard passing the exam.','She studied hard for pass the exam.'],
+   explain:`「〜するために」という目的は to＋動詞の原形〈to pass〉で表します。目的を表すときに "for ～ing" は使えません。`,
+   jpDistractors:['彼女は試験に合格するために勉強を忘れずにした。','彼女は試験に合格したが、あまり勉強しなかった。','彼女は一生懸命勉強したが、試験に落ちた。'],
+   blankStem:'She studied hard ___ the exam.', blankAnswer:'to pass', blankOptions:['for passing','passing','for pass']},
+  {jp:'私はあなたにまた会えてとてもうれしかった。',
+   correct:'I was very happy to see you again.',
+   distractors:['I was very happy seeing you again.','I was very happy for see you again.','I was very happy see you again.'],
+   explain:`「〜して（うれしい）」と感情の原因を表すときは 感情の形容詞＋to＋動詞の原形〈happy to see〉の形を使います。`,
+   jpDistractors:['私はあなたに会えなくてとても残念だった。','私はあなたにまた会うのが怖かった。','私はあなたに会ったが、うれしくなかった。'],
+   blankStem:'I was very happy ___ you again.', blankAnswer:'to see', blankOptions:['seeing','for see','see']},
+  {jp:'彼は成長して偉大なピアニストになった。',
+   correct:'He grew up to become a great pianist.',
+   distractors:['He grew up becoming a great pianist.','He grew up become a great pianist.','He grew up for becoming a great pianist.'],
+   explain:`「成長して〜になった」という結果は to＋動詞の原形〈to become〉で表します。`,
+   jpDistractors:['彼は成長したが、ピアニストにはならなかった。','彼はまだ成長中で、ピアニストを目指している。','彼は偉大なピアニストになるために猛練習した。'],
+   blankStem:'He grew up ___ a great pianist.', blankAnswer:'to become', blankOptions:['becoming','become','for becoming']},
+  {jp:'私たちはその知らせを聞いて驚いた。',
+   correct:'We were surprised to hear the news.',
+   distractors:['We were surprised hearing the news.','We were surprised hear the news.','We were surprised for hear the news.'],
+   explain:`「〜して驚いた」と感情の原因を表すときは 感情の形容詞＋to＋動詞の原形〈surprised to hear〉の形を使います。`,
+   jpDistractors:['私たちはその知らせを聞いても驚かなかった。','私たちはその知らせを聞く前から驚いていた。','私たちはその知らせを聞いてがっかりした。'],
+   blankStem:'We were surprised ___ the news.', blankAnswer:'to hear', blankOptions:['hearing','hear','for hear']},
+  {jp:'彼らは旅行のためのお金を貯めるために一生懸命働いた。',
+   correct:'They worked hard to save money for the trip.',
+   distractors:['They worked hard for saving money for the trip.','They worked hard saving money for the trip.','They worked hard for save money for the trip.'],
+   explain:`「〜するために」という目的は to＋動詞の原形〈to save〉で表します。`,
+   jpDistractors:['彼らは旅行のためのお金を貯めるために働くのをやめた。','彼らは一生懸命働いたが、旅行のお金は貯まらなかった。','彼らはすでに旅行のためのお金を貯め終えた。'],
+   blankStem:'They worked hard ___ money for the trip.', blankAnswer:'to save', blankOptions:['for saving','saving','for save']},
+  {jp:'彼はその手紙を見て驚いた。',
+   correct:'He was surprised to see the letter.',
+   distractors:['He was surprised seeing the letter.','He was surprised see the letter.','He was surprised for see the letter.'],
+   explain:`「〜して驚いた」と感情の原因を表すときは 感情の形容詞＋to＋動詞の原形〈surprised to see〉の形を使います。`,
+   jpDistractors:['彼はその手紙を見ても驚かなかった。','彼はその手紙を見る前に驚いていた。','彼はその手紙を見て悲しくなった。'],
+   blankStem:'He was surprised ___ the letter.', blankAnswer:'to see', blankOptions:['seeing','see','for see']},
+  {jp:'彼は宿題を終わらせるために早起きした。',
+   correct:'He got up early to finish his homework.',
+   distractors:['He got up early for finishing his homework.','He got up early finishing his homework.','He got up early for finish his homework.'],
+   explain:`「〜するために」という目的は to＋動詞の原形〈to finish〉で表します。`,
+   jpDistractors:['彼は宿題を終わらせるために早起きするのをやめた。','彼は早起きしたが、宿題を終わらせなかった。','彼はすでに宿題を終わらせていた。'],
+   blankStem:'He got up early ___ his homework.', blankAnswer:'to finish', blankOptions:['for finishing','finishing','for finish']},
+  {jp:'私たちはバスに乗るために走った。',
+   correct:'We ran to catch the bus.',
+   distractors:['We ran for catching the bus.','We ran catching the bus.','We ran for catch the bus.'],
+   explain:`「〜するために」という目的は to＋動詞の原形〈to catch〉で表します。`,
+   jpDistractors:['私たちはバスに乗るために走るのをやめた。','私たちは走ったが、バスに間に合わなかった。','私たちはすでにバスに乗っていた。'],
+   blankStem:'We ran ___ the bus.', blankAnswer:'to catch', blankOptions:['for catching','catching','for catch']},
+  {jp:'彼女はその知らせを聞いて悲しくなった。',
+   correct:'She was sad to hear the news.',
+   distractors:['She was sad hearing the news.','She was sad hear the news.','She was sad for hear the news.'],
+   explain:`「〜して（悲しい）」と感情の原因を表すときは 感情の形容詞＋to＋動詞の原形〈sad to hear〉の形を使います。`,
+   jpDistractors:['彼女はその知らせを聞いても悲しくならなかった。','彼女はその知らせを聞く前から悲しかった。','彼女はその知らせを聞いてうれしくなった。'],
+   blankStem:'She was sad ___ the news.', blankAnswer:'to hear', blankOptions:['hearing','hear','for hear']},
+  {jp:'彼女は一生懸命練習して、大会で優勝した。',
+   correct:'She practiced hard to win the contest.',
+   distractors:['She practiced hard for winning the contest.','She practiced hard winning the contest.','She practiced hard for win the contest.'],
+   explain:`「〜するために」という目的は to＋動詞の原形〈to win〉で表します。`,
+   jpDistractors:['彼女は大会で優勝するために練習するのをやめた。','彼女は一生懸命練習したが、大会には負けた。','彼女はすでに大会で優勝していた。'],
+   blankStem:'She practiced hard ___ the contest.', blankAnswer:'to win', blankOptions:['for winning','winning','for win']},
+  {jp:'彼はその手紙を読んで安心した。',
+   correct:'He was relieved to read the letter.',
+   distractors:['He was relieved reading the letter.','He was relieved read the letter.','He was relieved for read the letter.'],
+   explain:`「〜して（安心した）」と感情の原因を表すときは 感情の形容詞＋to＋動詞の原形〈relieved to read〉の形を使います。`,
+   jpDistractors:['彼はその手紙を読んでも安心しなかった。','彼はその手紙を読む前から安心していた。','彼はその手紙を読んで悲しくなった。'],
+   blankStem:'He was relieved ___ the letter.', blankAnswer:'to read', blankOptions:['reading','read','for read']},
+  {jp:'私たちは新しい体育館を建てるために資金を集めた。',
+   correct:'We raised money to build a new gym.',
+   distractors:['We raised money for building a new gym.','We raised money building a new gym.','We raised money for build a new gym.'],
+   explain:`「〜するために」という目的は to＋動詞の原形〈to build〉で表します。`,
+   jpDistractors:['私たちは新しい体育館を建てるために資金を集めるのをやめた。','私たちは資金を集めたが、体育館は建てなかった。','私たちはすでに新しい体育館を建てていた。'],
+   blankStem:'We raised money ___ a new gym.', blankAnswer:'to build', blankOptions:['for building','building','for build']},
+];
+
+function genFromSentenceBank(items){
+  const it = pick(items);
+  const choices = shuffle([it.correct, ...it.distractors]);
+  const out = {
+    stemHtml: `<span style="font-weight:700;">${it.jp}</span>`,
+    jp: INF_PICK_JP, full: INF_PICK_JP,
+    choices, answer: it.correct, explain: it.explain, wide:true,
+    jpDistractors: it.jpDistractors
+  };
+  // some items also carry hand-authored word/phrase-level blank data
+  // (blankStem/blankAnswer/blankOptions), which lets 穴埋め選択 work for
+  // these sentence-bank topics too, alongside the whole-sentence choices above
+  if(it.blankStem){
+    out.blankStem = it.blankStem;
+    out.blankAnswer = it.blankAnswer;
+    out.blankChoices = uniqChoices(it.blankAnswer, it.blankOptions);
+    out.blankJp = it.jp; // the item's real Japanese sentence, for the hint line
+  }
+  return out;
+}
+function genInfAdj(){ return genFromSentenceBank(INF_ADJ_ITEMS); }
+function genInfAdv(){ return genFromSentenceBank(INF_ADV_ITEMS); }
+
+const GERUND_VERB_JP = {
+  'enjoy':   (v)=>`のを楽しんでいる`,
+  'finish':  (v)=>`のを終えた`,
+  'stop':    (v)=>`のをやめた`,
+  'give up': (v)=>`のをあきらめた`,
+  'mind':    (v)=>`のを気にしている`,
+  'avoid':   (v)=>`のを避けている`,
+};
+function genGerund(){
+  const items=[
+    {base:'enjoy', third:'enjoys'},
+    {base:'finish', third:'finishes'},
+    {base:'stop', third:'stops'},
+    {base:'give up', third:'gives up'},
+    {base:'mind', third:'minds'},
+    {base:'avoid', third:'avoids'},
+  ];
+  const s=pick(SUBJECTS), {v,o,oJP,particle}=pickVO();
+  const it=pick(items);
+  const correct=v.ing;
+  const choices=uniqChoices(correct,[`to ${v.base}`, v.base, v.past, v.third]);
+  const jpBase=`${subjJP(s)}は${oJP}${particle}${v.jp}`;
+  // same subject/verb/object — near-miss distractors swap in a different
+  // gerund-taking verb's meaning, so the choice can't be made by vocabulary alone
+  const otherGerundVerbs=Object.keys(GERUND_VERB_JP).filter(k=>k!==it.base);
+  const jpDistractors=pickN(otherGerundVerbs,2).map(k=>`${jpBase}${GERUND_VERB_JP[k](v)}。`);
+  return{
+    stem:`${s.t} ${s.third?it.third:it.base} ___ (${v.base}) ${o}.`,
+    jp:`（"${it.base}" のあとは動名詞だけを目的語にとる動詞）`,
+    full:`${jpBase}${GERUND_VERB_JP[it.base](v)}。`, jpDistractors,
+    choices, answer:correct,
+    explain:`"${it.base}" は目的語に動名詞（〜ing）だけをとる動詞です。不定詞（to + 原形）は使えないので「${correct}」が正解です。`
+  };
+}
+
+function genIngVsGerund(){
+  // Directly targets the confusable point: is the -ing word a gerund (noun) or a present participle (adjective/progressive)?
+  const items=[
+    {sent:'Swimming in the sea is a lot of fun.', ing:'Swimming', ans:'動名詞（文の主語）',
+     opts:['動名詞（文の主語）','動名詞（目的語）','現在分詞（進行形）','現在分詞（名詞を修飾）'],
+     full:'海で泳ぐことはとても楽しい。',
+     explain:`"Swimming" が文全体の主語になっていて「泳ぐこと」という意味の名詞のはたらきをしています。これは動名詞（主語用法）です。`},
+    {sent:'My hobby is collecting old coins.', ing:'collecting', ans:'動名詞（補語）',
+     opts:['動名詞（補語）','動名詞（主語）','現在分詞（進行形）','現在分詞（名詞を修飾）'],
+     full:'私の趣味は古いコインを集めることだ。',
+     explain:`be動詞のあとで「趣味は〜すること」という意味を表しているので、これは動名詞（補語用法）です。`},
+    {sent:'He is good at cooking Italian food.', ing:'cooking', ans:'動名詞（前置詞の目的語）',
+     opts:['動名詞（前置詞の目的語）','動名詞（主語）','現在分詞（進行形）','現在分詞（名詞を修飾）'],
+     full:'彼はイタリア料理を作るのが得意だ。',
+     explain:`前置詞 "at" の後ろに置かれ「料理をすること」という名詞のはたらきをしているので、動名詞（前置詞の目的語）です。`},
+    {sent:'The boy swimming in the pool is my brother.', ing:'swimming', ans:'現在分詞（名詞を修飾）',
+     opts:['現在分詞（名詞を修飾）','動名詞（主語）','動名詞（目的語）','現在分詞（進行形）'],
+     full:'プールで泳いでいる男の子は私の弟だ。',
+     explain:`"swimming in the pool" が直前の名詞 "The boy" を後ろから説明（修飾）しています。これは現在分詞の形容詞的用法です。`},
+    {sent:'She is reading a book in her room now.', ing:'reading', ans:'現在分詞（進行形）',
+     opts:['現在分詞（進行形）','動名詞（主語）','動名詞（目的語）','現在分詞（名詞を修飾）'],
+     full:'彼女は今、自分の部屋で本を読んでいる。',
+     explain:`〈be動詞＋〜ing〉で「今〜している」を表しているので、これは現在進行形を作る現在分詞です。`},
+    {sent:'I saw a crying baby on the train.', ing:'crying', ans:'現在分詞（名詞を修飾）',
+     opts:['現在分詞（名詞を修飾）','動名詞（主語）','動名詞（目的語）','現在分詞（進行形）'],
+     full:'私は電車で泣いている赤ちゃんを見た。',
+     explain:`"crying" が直前の名詞 "baby" を前から説明（修飾）しています。これは現在分詞の形容詞的用法です。`},
+    {sent:'I like listening to music before I go to bed.', ing:'listening', ans:'動名詞（目的語）',
+     opts:['動名詞（目的語）','動名詞（主語）','現在分詞（進行形）','現在分詞（名詞を修飾）'],
+     full:'私は寝る前に音楽を聞くのが好きだ。',
+     explain:`動詞 "like" の目的語になっていて「聞くこと」という名詞のはたらきをしているので、動名詞（目的語用法）です。`},
+    {sent:'They were talking loudly on the phone.', ing:'talking', ans:'現在分詞（進行形）',
+     opts:['現在分詞（進行形）','動名詞（主語）','動名詞（目的語）','現在分詞（名詞を修飾）'],
+     full:'彼らは電話で大声で話していた。',
+     explain:`〈were＋〜ing〉で過去進行形「〜していた」を表しているので、これは現在分詞（進行形）です。`},
+    {sent:'Playing video games is not a waste of time.', ing:'Playing', ans:'動名詞（文の主語）',
+     opts:['動名詞（文の主語）','動名詞（目的語）','現在分詞（進行形）','現在分詞（名詞を修飾）'],
+     full:'テレビゲームをすることは時間の無駄ではない。',
+     explain:`"Playing video games" が文全体の主語になっているので、これは動名詞（主語用法）です。`},
+    {sent:'Look at that sleeping cat on the sofa.', ing:'sleeping', ans:'現在分詞（名詞を修飾）',
+     opts:['現在分詞（名詞を修飾）','動名詞（主語）','動名詞（目的語）','現在分詞（進行形）'],
+     full:'ソファーで眠っているあの猫を見て。',
+     explain:`"sleeping" が直前の名詞 "cat" を前から説明（修飾）しているので、現在分詞の形容詞的用法です。`},
+  ];
+  const it=pick(items);
+  const choices=uniqChoices(it.ans, it.opts.filter(o=>o!==it.ans));
+  const highlighted = it.sent.replace(it.ing, `<span style="color:var(--accent);font-weight:700;">${it.ing}</span>`);
+  return{
+    stemHtml:`${highlighted}<br><span style="font-size:14.5px;color:var(--ink-soft);font-weight:400;">この文のオレンジ色の -ing 形は、動名詞と現在分詞のどちらの働きですか？</span>`,
+    jp:'（動名詞＝名詞のはたらき／現在分詞＝進行形か、名詞を修飾する形容詞のはたらき）',
+    full:it.full,
+    choices, answer:it.ans, explain:it.explain
+  };
+}
+
+function genConditional(){
+  const items=[
+    {stem:'If I ___ (be) a bird, I would fly to you.', v:'were', opts:['were','am','was','be'],
+     jp:'（現実とちがう仮定＝仮定法過去。be動詞は主語に関係なく were）',
+     full:'もし私が鳥だったら、あなたのところへ飛んでいくのに。',
+     explain:`現在の事実に反する仮定（仮定法過去）では、be動詞は主語に関係なく "were" を使います。「もし私が鳥だったら」という現実にはありえない仮定です。`,
+     jpDistractors:['もし私が鳥になったら、あなたのところへ飛んでいくつもりだ。','私は鳥ではないので、あなたのところへ飛んでいけない。','もし私が鳥だったら、あなたのところへ飛んでいっただろう。']},
+    {stem:'If I had more money, I ___ (buy) a new computer.', v:'would buy', opts:['would buy','will buy','buy','bought'],
+     jp:'（if節が過去形→帰結節は would + 原形）',
+     full:'もしもっとお金があったら、新しいコンピューターを買うのに。',
+     explain:`仮定法過去は〈If + 主語 + 過去形 〜, 主語 + would + 動詞の原形 …〉の形。if節が過去形なので、帰結節は "would buy" になります。`,
+     jpDistractors:['もしもっとお金があったら、新しいコンピューターを買っただろう。','お金がもっとあるので、新しいコンピューターを買うつもりだ。','もっとお金があっても、新しいコンピューターは買わない。']},
+    {stem:'If it ___ (rain) tomorrow, we will cancel the picnic.', v:'rains', opts:['rains','rained','will rain','rain'],
+     jp:'（未来のことでも if節では現在形を使う）',
+     full:'もし明日雨が降ったら、私たちはピクニックを中止する。',
+     explain:`未来のことを表す文でも、if節（条件節）の中では現在形を使うのが基本ルールです。「${'rains'}」が正解です。`,
+     jpDistractors:['もし明日雨が降ったら、私たちはピクニックを中止しただろう。','明日は雨が降らないので、ピクニックは予定通りだ。','もし今日雨が降っていたら、私たちはピクニックを中止していただろう。']},
+    {stem:'If I had studied harder, I ___ (pass) the test.', v:'would have passed', opts:['would have passed','would pass','will pass','passed'],
+     jp:'（過去の事実に反する仮定＝仮定法過去完了）',
+     full:'もしもっと一生懸命勉強していたら、テストに合格していただろう。',
+     explain:`過去の事実に反する仮定（仮定法過去完了）は〈If + had + 過去分詞 〜, would have + 過去分詞 …〉。「${'would have passed'}」が正解です。`,
+     jpDistractors:['もしもっと一生懸命勉強したら、テストに合格するだろう。','一生懸命勉強したので、テストに合格した。','もしもっと一生懸命勉強していたら、テストに合格するのに。']},
+  ];
+  const it=pick(items);
+  const choices=uniqChoices(it.v, it.opts.filter(o=>o!==it.v));
+  return{ stem:it.stem, jp:it.jp, full:it.full, jpDistractors:it.jpDistractors, choices, answer:it.v, explain:it.explain };
+}
+
+/* ---------------------------------------------------------
+   topic registry
+--------------------------------------------------------- */
+const TOPICS = [
+  {group:'時制の基本', id:'pres-simple', label:'現在形', gen:genPresentSimple},
+  {group:'時制の基本', id:'pres-prog', label:'現在進行形', gen:genPresentProg},
+  {group:'時制の基本', id:'past-simple', label:'過去形', gen:genPastSimple},
+  {group:'時制の基本', id:'past-prog', label:'過去進行形', gen:genPastProg},
+  {group:'時制の基本', id:'future', label:'未来形（will / be going to）', gen:genFuture},
+
+  {group:'完了形', id:'pres-perfect', label:'現在完了形', gen:genPresentPerfect},
+  {group:'完了形', id:'pres-perfect-prog', label:'現在完了進行形', gen:genPresentPerfectProg},
+  {group:'完了形', id:'past-perfect', label:'過去完了形', gen:genPastPerfect},
+
+  {group:'不定詞・動名詞', id:'inf-noun', label:'不定詞の名詞的用法', gen:genInfNoun},
+  {group:'不定詞・動名詞', id:'inf-adj', label:'不定詞の形容詞的用法', gen:genInfAdj},
+  {group:'不定詞・動名詞', id:'inf-adv', label:'不定詞の副詞的用法', gen:genInfAdv},
+  {group:'不定詞・動名詞', id:'gerund', label:'動名詞', gen:genGerund},
+  {group:'不定詞・動名詞', id:'ing-vs-gerund', label:'★現在分詞と動名詞の区別', gen:genIngVsGerund},
+
+  {group:'文構造・その他', id:'passive', label:'受動態', gen:genPassive},
+  {group:'文構造・その他', id:'relative', label:'関係詞', gen:genRelative},
+  {group:'文構造・その他', id:'comparison', label:'比較（比較級・最上級）', gen:genComparison},
+  {group:'文構造・その他', id:'modal', label:'助動詞', gen:genModal},
+  {group:'文構造・その他', id:'conditional', label:'仮定法', gen:genConditional},
+];
+
+/* ---------------------------------------------------------
+   app state & UI wiring
+--------------------------------------------------------- */
+const QUESTION_TYPES = [
+  {id:'blank',    label:'穴埋め選択',   desc:'空所に入る正しい形を4択で選ぶ（いつもの形式）'},
+  {id:'jpselect', label:'日本語訳選択', desc:'できあがった英文を読み、正しい日本語訳を4択で選ぶ'},
+  {id:'enselect', label:'英文選択',     desc:'日本語の意味を読み、正しい英文を4択で選ぶ'},
+  {id:'reorder',  label:'並べ替え',     desc:'バラバラの単語を正しい順番にクリックして並べる'},
+];
+
+const state = { selected:new Set(), formats:new Set(QUESTION_TYPES.map(f=>f.id)), correct:0, total:0, streak:0, current:null, translationMode:'hint' };
+
+/* ---------- helpers for the extra question formats ---------- */
+function escapeHtml(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+function stripTags(html){ return String(html).replace(/<[^>]+>/g,'').trim(); }
+// like stripTags, but keeps a highlighted <span> word visible as 【word】
+// (color can't survive into plain text) and inserts a space between
+// separate tag-separated blocks so they don't run together
+function stripTagsWithSpace(html){
+  let s = String(html).replace(/<span[^>]*>([^<]*)<\/span>/g, '【$1】');
+  s = s.replace(/<[^>]+>/g, ' ');
+  return s.replace(/\s+/g, ' ').trim();
+}
+function capitalizeSentence(s){
+  s = String(s).trim();
+  if(!s) return s;
+  return s.charAt(0).toUpperCase() + s.slice(1);
+}
+// strips the bits of a "stem" template that only make sense as an on-screen
+// hint for the fill-in-the-blank format — a word-form hint like "(write)",
+// a usage note like "(It's already planned.)", or the "A: ... B: OK, "
+// dialogue frame some future-tense items use — so what's left is a single,
+// clean, real sentence usable in the other question formats.
+function cleanStem(s){
+  let out = String(s);
+  out = out.replace(/^[A-Z]:\s*.*?\b[A-Z]:\s*(?:OK,\s*)?/, '');
+  out = out.replace(/\s*\([^)]*\)/g, '');
+  out = out.replace(/\s{2,}/g, ' ').trim();
+  return out;
+}
+// subject/thing phrases that are only ever stored capitalized because they
+// normally sit at the very start of a sentence — when a reconstructed
+// sentence puts one of them after an auxiliary instead ("Does she ...?"),
+// every occurrence past the first has to be lowercased again
+const SENTENCE_INITIAL_ONLY_CAPS = [...SUBJECTS.map(s=>s.t), ...PASSIVE_PAIRS.map(p=>p.thing)]
+  .filter(t=>t!=='I' && t!=='Tom' && t!=='Yui')
+  .sort((a,b)=>b.length-a.length);
+function fixMidSentenceCapitals(sentence){
+  let out=sentence;
+  SENTENCE_INITIAL_ONLY_CAPS.forEach(phrase=>{
+    let idx=out.indexOf(phrase);
+    while(idx!==-1){
+      if(idx!==0){
+        const lower=phrase.charAt(0).toLowerCase()+phrase.slice(1);
+        out=out.slice(0,idx)+lower+out.slice(idx+phrase.length);
+      }
+      idx=out.indexOf(phrase, idx+phrase.length);
+    }
+  });
+  return out;
+}
+// the full, correct English sentence for a core question (works for both
+// fill-in-the-blank generators and the whole-sentence "wide" generators)
+function buildFullEnglish(q){
+  if(q.wide) return q.answer;
+  return capitalizeSentence(fixMidSentenceCapitals(cleanStem(q.stem).replace('___', q.answer)));
+}
+// near-miss wrong full sentences, built by dropping each wrong blank-choice
+// into the same sentence frame (or, for wide questions, reusing their own
+// hand-curated wrong sentences)
+function buildWrongFullEnglish(q){
+  if(q.wide) return q.choices.filter(c=>c!==q.answer);
+  return q.choices.filter(c=>c!==q.answer)
+    .map(c=>capitalizeSentence(fixMidSentenceCapitals(cleanStem(q.stem).replace('___', c))));
+}
+// the Japanese sentence that matches the correct English sentence
+function jpSentenceFor(q){
+  if(q.wide) return stripTags(q.stemHtml);
+  return q.full || q.jp || '';
+}
+// gather up to `need` distinct wrong Japanese sentences. Near-miss
+// candidates supplied by the generator itself (same subject/verb/object,
+// differing only in the grammar point being tested — e.g. tense or
+// polarity) come first, since those are what actually force the student to
+// read for meaning instead of spotting an unrelated word. Only if there
+// aren't enough of those do we fall back to harvesting a real sentence from
+// another generated question (same topic first, then any other selected
+// topic) — always real, curated sentences, never freely generated text.
+function buildJPDistractors(correctJP, topic, pool, need, nearMiss){
+  const set=new Set();
+  (nearMiss||[]).forEach(jp=>{ if(jp && jp!==correctJP) set.add(jp); });
+  let tries=0;
+  while(set.size<need && tries<50){
+    tries++;
+    const srcTopic = (Math.random()<0.65 || pool.length<2) ? topic : pick(pool);
+    let cq; try{ cq=srcTopic.gen(); }catch(e){ continue; }
+    const jp = jpSentenceFor(cq);
+    if(jp && jp!==correctJP) set.add(jp);
+  }
+  const arr=[...set];
+  while(arr.length<need) arr.push(correctJP); // last-resort pad, dedup'd by uniqChoices later
+  return arr.slice(0,need);
+}
+// gather up to `need` distinct wrong full English sentences: prefer the
+// near-miss ones built from this question's own wrong-form choices, then
+// pad with sentences from other generated questions if still short
+function buildEnglishDistractors(q, topic, pool, need){
+  const correct=buildFullEnglish(q);
+  const arr=[...new Set(buildWrongFullEnglish(q))].filter(x=>x!==correct);
+  let tries=0;
+  while(arr.length<need && tries<50){
+    tries++;
+    const srcTopic = (Math.random()<0.65 || pool.length<2) ? topic : pick(pool);
+    let cq; try{ cq=srcTopic.gen(); }catch(e){ continue; }
+    const full = buildFullEnglish(cq);
+    if(full && full!==correct && !arr.includes(full)) arr.push(full);
+  }
+  return arr.slice(0,need);
+}
+// turns a core question into the actual displayed quiz item, choosing one
+// of the enabled formats at random
+function buildDisplayQuestion(topic, q, pool){
+  // a question with neither a fill-in-the-blank "stem" nor the whole-sentence
+  // "wide" shape (e.g. the 現在分詞/動名詞 usage-classification item) doesn't
+  // carry a reconstructable English sentence, so it always stays in its
+  // original single-choice form regardless of the format setting
+  if(!q.wide && !q.stem){
+    return { type:'blank', stemHtml:q.stemHtml, jp:q.jp, full:q.full, choices:q.choices, answer:q.answer, explain:q.explain, wide:false };
+  }
+
+  let enabled=[...state.formats];
+  if(enabled.length===0) enabled=['blank'];
+  // most "wide" (whole-sentence) generators have no word-blank data, so
+  // "blank" isn't a real option for them — except the ones that also carry
+  // hand-authored blankStem/blankAnswer/blankChoices data (see genFromSentenceBank)
+  const wideCanBlank = q.wide && !!q.blankStem;
+  let opts = (q.wide && !wideCanBlank) ? enabled.filter(f=>f!=='blank') : enabled;
+  // if the user's chosen formats leave nothing usable here (e.g. they picked
+  // only "穴埋め選択" for a topic that can't produce it), fall back to a random
+  // pick among ALL other types instead of always defaulting to one format
+  let type = opts.length ? pick(opts) : pick(QUESTION_TYPES.map(f=>f.id).filter(f=>f!=='blank'));
+
+  if(type==='blank'){
+    if(wideCanBlank){
+      return { type:'blank', stem:q.blankStem, jp:q.blankJp, full:q.blankJp, choices:q.blankChoices, answer:q.blankAnswer, explain:q.explain, wide:false };
+    }
+    return { type:'blank', stem:q.stem, jp:q.jp, full:q.full, choices:q.choices, answer:q.answer, explain:q.explain, wide:false };
+  }
+
+  const correctFull = buildFullEnglish(q);
+  const correctJP = jpSentenceFor(q);
+
+  if(type==='jpselect'){
+    const distractors = buildJPDistractors(correctJP, topic, pool, 3, q.jpDistractors);
+    const choices = shuffle([correctJP, ...distractors]);
+    return {
+      type:'jpselect',
+      stemHtml:`<div class="qtypelabel">英文の意味に合う日本語訳を選ぼう</div><div class="en-sentence">${escapeHtml(correctFull)}</div>`,
+      jp:'', full:'', choices, answer:correctJP, explain:q.explain, wide:true
+    };
+  }
+  if(type==='enselect'){
+    const distractors = buildEnglishDistractors(q, topic, pool, 3);
+    const choices = shuffle([correctFull, ...distractors]);
+    return {
+      type:'enselect',
+      stemHtml:`<div class="qtypelabel">日本語の意味に合う英文を選ぼう</div><div class="jp-sentence">${escapeHtml(correctJP)}</div>`,
+      jp:'', full:'', choices, answer:correctFull, explain:q.explain, wide:true
+    };
+  }
+  // reorder
+  return buildReorderQuestion(correctFull, correctJP, q.explain);
+}
+function buildReorderQuestion(correctFull, correctJP, explain){
+  const m = correctFull.match(/^(.*?)([.?!]+)\s*$/);
+  const body = m ? m[1] : correctFull;
+  const punct = m ? m[2] : '.';
+  const words = body.trim().split(/\s+/).filter(Boolean);
+  return {
+    type:'reorder',
+    stemHtml:`<div class="qtypelabel">単語を並べ替えて英文を作ろう</div>`,
+    jp: correctJP, full: correctJP,
+    words, punct, answer: words.join(' ')+punct, explain, wide:false
+  };
+}
+
+function jpTextFor(q){
+  if(state.translationMode==='full' && q.full) return q.full;
+  return q.jp || '';
+}
+function setMode(mode){
+  state.translationMode = mode;
+  document.getElementById('modeHintBtn').classList.toggle('active', mode==='hint');
+  document.getElementById('modeFullBtn').classList.toggle('active', mode==='full');
+  document.getElementById('modeToggleBtn').textContent = mode==='hint' ? '日本語訳: ヒントだけ ⇄' : '日本語訳: 文全体 ⇄';
+  if(state.current){ document.getElementById('qJp').textContent = jpTextFor(state.current.q); }
+}
+
+function buildTopicUI(){
+  const card=document.getElementById('topicCard');
+  const groups=[...new Set(TOPICS.map(t=>t.group))];
+  groups.forEach(g=>{
+    const row=document.createElement('div');
+    row.className='group-title-row';
+    row.innerHTML=`<span class="group-title">${g}</span>`;
+    card.appendChild(row);
+    const list=document.createElement('div');
+    list.className='chiplist';
+    TOPICS.filter(t=>t.group===g).forEach(t=>{
+      const chip=document.createElement('div');
+      chip.className='chip';
+      chip.innerHTML=`<input type="checkbox" id="chk-${t.id}"><label for="chk-${t.id}">${t.label}</label>`;
+      list.appendChild(chip);
+      chip.querySelector('input').addEventListener('change',e=>{
+        if(e.target.checked) state.selected.add(t.id); else state.selected.delete(t.id);
+        refreshSelUI();
+      });
+    });
+    card.appendChild(list);
+  });
+  const toprow=document.createElement('div');
+  toprow.className='toprow';
+  toprow.innerHTML=`<span class="selcount"><b id="selCount">0</b> 個の単元を選択中</span>
+    <span><button class="minibtn" id="selAll">全部選ぶ</button> ・ <button class="minibtn" id="selNone">全部はずす</button></span>`;
+  card.appendChild(toprow);
+  document.getElementById('selAll').addEventListener('click',()=>{
+    TOPICS.forEach(t=>{ state.selected.add(t.id); document.getElementById('chk-'+t.id).checked=true; });
+    refreshSelUI();
+  });
+  document.getElementById('selNone').addEventListener('click',()=>{
+    state.selected.clear();
+    TOPICS.forEach(t=>{ document.getElementById('chk-'+t.id).checked=false; });
+    refreshSelUI();
+  });
+}
+function buildFormatUI(){
+  const list=document.getElementById('formatList');
+  QUESTION_TYPES.forEach(f=>{
+    const chip=document.createElement('div');
+    chip.className='fchip';
+    chip.innerHTML=`<input type="checkbox" id="fchk-${f.id}" checked><label for="fchk-${f.id}"><span class="fbox"></span><span class="ftext">${f.label}<span class="fdesc">${f.desc}</span></span></label>`;
+    list.appendChild(chip);
+    chip.querySelector('input').addEventListener('change',e=>{
+      if(e.target.checked) state.formats.add(f.id); else state.formats.delete(f.id);
+      refreshSelUI();
+    });
+  });
+}
+function refreshSelUI(){
+  document.getElementById('selCount').textContent=state.selected.size;
+  document.getElementById('startBtn').disabled = state.selected.size===0 || state.formats.size===0;
+}
+
+function startQuiz(){
+  document.getElementById('selectScreen').hidden=true;
+  document.getElementById('quizScreen').hidden=false;
+  document.getElementById('scorebar').hidden=false;
+  state.correct=0; state.total=0; state.streak=0;
+  updateScoreUI();
+  nextQuestion();
+}
+function backToSelect(){
+  document.getElementById('selectScreen').hidden=false;
+  document.getElementById('quizScreen').hidden=true;
+  document.getElementById('scorebar').hidden=true;
+}
+function updateScoreUI(){
+  document.getElementById('scoreCorrect').textContent=state.correct;
+  document.getElementById('scoreTotal').textContent=state.total;
+  document.getElementById('scoreStreak').textContent=state.streak;
+}
+
+function nextQuestion(){
+  const pool=TOPICS.filter(t=>state.selected.has(t.id));
+  const topic=pick(pool);
+  let coreQ=null, tries=0;
+  while(tries<6){
+    try{ coreQ=topic.gen(); if(coreQ && coreQ.choices && coreQ.choices.length>=2) break; }catch(e){ /* regenerate */ }
+    tries++;
+  }
+  if(!coreQ){ coreQ={stem:'( – )', choices:['A','B','C','D'], answer:'A', explain:''}; }
+  let q=null;
+  try{ q=buildDisplayQuestion(topic, coreQ, pool); }catch(e){ q=coreQ; }
+  if(!q || (!q.choices && q.type!=='reorder')){ q=coreQ; }
+  state.current={topic, q};
+
+  document.getElementById('topicTag').textContent=topic.label.replace('★','');
+  const stemEl=document.getElementById('qStem');
+  if(q.stemHtml){ stemEl.innerHTML=q.stemHtml; }
+  else { stemEl.innerHTML = q.stem.replace('___','<span class="blank">___</span>'); }
+  document.getElementById('qJp').textContent=jpTextFor(q);
+
+  const choicesEl=document.getElementById('choices');
+  const reorderEl=document.getElementById('reorderArea');
+
+  if(q.type==='reorder'){
+    choicesEl.hidden=true; choicesEl.innerHTML='';
+    reorderEl.hidden=false;
+    renderReorder(q);
+  } else {
+    reorderEl.hidden=true;
+    choicesEl.hidden=false;
+    choicesEl.innerHTML='';
+    choicesEl.className = 'choices' + (q.wide ? ' wide' : '');
+    const letters=['A','B','C','D'];
+    q.choices.forEach((c,i)=>{
+      const btn=document.createElement('button');
+      btn.className='choice';
+      btn.innerHTML=`<span class="letter">${letters[i]}</span><span>${c}</span>`;
+      btn.addEventListener('click',()=>selectAnswer(c,btn));
+      choicesEl.appendChild(btn);
+    });
+  }
+
+  document.getElementById('feedback').className='feedback';
+  document.getElementById('nextBtn').hidden=true;
+}
+
+function selectAnswer(choice, btn){
+  const {q}=state.current;
+  const allBtns=[...document.querySelectorAll('.choice')];
+  allBtns.forEach(b=>b.disabled=true);
+  const isCorrect = choice===q.answer;
+  state.total++;
+  if(isCorrect){ state.correct++; state.streak++; }
+  else { state.streak=0; }
+  updateScoreUI();
+
+  allBtns.forEach(b=>{
+    const label=b.querySelector('span:last-child').textContent;
+    if(label===q.answer) b.classList.add('correct');
+    else if(b===btn) b.classList.add('wrong');
+    else b.classList.add('dim');
+  });
+
+  const fb=document.getElementById('feedback');
+  fb.className='feedback show '+(isCorrect?'good':'bad');
+  document.getElementById('fbTitle').innerHTML = isCorrect ? '◎ 正解！' : `✕ 不正解 — 正解は「<span class="ans">${q.answer}</span>」`;
+  document.getElementById('fbBody').textContent = q.explain||'';
+
+  document.getElementById('nextBtn').hidden=false;
+}
+
+/* ---------- 並べ替え（reorder）UI ---------- */
+function renderReorder(q){
+  document.getElementById('reorderReset').disabled=false;
+  const bankOrder = q.words.map((w,i)=>({w,i}));
+  let shuffled = shuffle(bankOrder.slice());
+  if(shuffled.length>1){
+    let guard=0;
+    while(shuffled.every((x,idx)=>x.i===bankOrder[idx].i) && guard<8){ shuffled=shuffle(bankOrder.slice()); guard++; }
+  }
+  state.reorderBank = shuffled;
+  state.reorderChosen = [];
+  renderReorderDOM();
+}
+function renderReorderDOM(){
+  const bankEl=document.getElementById('reorderBank');
+  const ansEl=document.getElementById('reorderAnswer');
+  const checkBtn=document.getElementById('reorderCheck');
+  bankEl.innerHTML=''; ansEl.innerHTML='';
+  state.reorderBank.forEach((item,idx)=>{
+    const chip=document.createElement('button');
+    chip.type='button'; chip.className='rchip';
+    chip.textContent=item.w;
+    chip.addEventListener('click',()=>{
+      state.reorderChosen.push(item);
+      state.reorderBank.splice(idx,1);
+      renderReorderDOM();
+    });
+    bankEl.appendChild(chip);
+  });
+  state.reorderChosen.forEach((item,idx)=>{
+    const chip=document.createElement('button');
+    chip.type='button'; chip.className='rchip';
+    chip.textContent=item.w;
+    chip.addEventListener('click',()=>{
+      state.reorderChosen.splice(idx,1);
+      state.reorderBank.push(item);
+      renderReorderDOM();
+    });
+    ansEl.appendChild(chip);
+  });
+  checkBtn.disabled = state.reorderBank.length>0;
+}
+function resetReorder(){
+  if(!state.current || state.current.q.type!=='reorder') return;
+  if(document.getElementById('reorderReset').disabled) return;
+  state.reorderBank = state.reorderBank.concat(state.reorderChosen);
+  state.reorderChosen = [];
+  renderReorderDOM();
+}
+function checkReorder(){
+  const q=state.current.q;
+  if(state.reorderBank.length>0) return;
+  const builtWords = state.reorderChosen.map(x=>x.w);
+  const built = builtWords.join(' ') + q.punct;
+  const isCorrect = built===q.answer;
+
+  document.getElementById('reorderCheck').disabled=true;
+  document.getElementById('reorderReset').disabled=true;
+  document.querySelectorAll('.reorder-bank .rchip, .reorder-answer .rchip').forEach(b=>b.disabled=true);
+
+  state.total++;
+  if(isCorrect){ state.correct++; state.streak++; }
+  else { state.streak=0; }
+  updateScoreUI();
+
+  [...document.querySelectorAll('.reorder-answer .rchip')].forEach((el,i)=>{
+    el.classList.add(builtWords[i]===q.words[i] ? 'rightpos' : 'wrongpos');
+  });
+
+  const fb=document.getElementById('feedback');
+  fb.className='feedback show '+(isCorrect?'good':'bad');
+  document.getElementById('fbTitle').innerHTML = isCorrect ? '◎ 正解！' : `✕ 不正解 — 正解は「<span class="ans">${q.words.join(' ')+q.punct}</span>」`;
+  document.getElementById('fbBody').textContent = q.explain||'';
+
+  document.getElementById('nextBtn').hidden=false;
+}
+
+/* ---------- CSV export (for the classroom quiz tool) ---------- */
+function csvEscape(s){
+  s = String(s==null ? '' : s);
+  if(/[",\r\n]/.test(s)){ s = '"' + s.replace(/"/g,'""') + '"'; }
+  return s;
+}
+function csvQuestionText(dq){
+  if(dq.type==='jpselect'){
+    const m = dq.stemHtml.match(/en-sentence">([\s\S]*?)<\/div>/);
+    const sentence = m ? m[1] : stripTagsWithSpace(dq.stemHtml);
+    return `次の英文の意味に合う日本語訳を選ぼう：${sentence}`;
+  }
+  if(dq.type==='enselect'){
+    const m = dq.stemHtml.match(/jp-sentence">([\s\S]*?)<\/div>/);
+    const sentence = m ? m[1] : stripTagsWithSpace(dq.stemHtml);
+    return `次の日本語の意味に合う英文を選ぼう：${sentence}`;
+  }
+  if(dq.stemHtml){
+    return stripTagsWithSpace(dq.stemHtml) + (dq.jp || '');
+  }
+  return dq.stem + (dq.jp || '');
+}
+function fallbackDownload(filename, data){
+  try{
+    const blob = new Blob([data], {type:'text/csv;charset=utf-8;'});
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url; a.download = filename;
+    document.body.appendChild(a); a.click(); document.body.removeChild(a);
+    setTimeout(()=>URL.revokeObjectURL(url), 4000);
+  }catch(e){
+    alert('CSVの書き出しに失敗しました。');
+  }
+}
+async function saveCsvFile(filename, data){
+  if(window.claude && typeof window.claude.use==='function'){
+    try{
+      const downloads = await window.claude.use('downloads');
+      if(downloads){
+        try{
+          await downloads.save({filename, data});
+        }catch(err){
+          if(err && err.code==='declined') return; // the user said no — respect it
+          fallbackDownload(filename, data);
+        }
+        return;
+      }
+    }catch(e){ /* capability unusable here — fall through */ }
+  }
+  fallbackDownload(filename, data);
+}
+async function exportCsv(){
+  const pool = TOPICS.filter(t=>state.selected.has(t.id));
+  if(!pool.length){ alert('先に単元を1つ以上選んでください。'); return; }
+
+  const countInput = document.getElementById('csvCount');
+  const n = Math.max(1, Math.min(200, parseInt(countInput.value,10) || 20));
+  const colors = ['赤','青','黄','緑'];
+
+  // the receiving quiz tool has no equivalent of a reorder question, so it
+  // is always left out of a CSV export regardless of the checkbox state
+  let csvFormats = [...state.formats].filter(f=>f!=='reorder');
+  if(!csvFormats.length) csvFormats = ['blank'];
+  const savedFormats = state.formats;
+  state.formats = new Set(csvFormats);
+
+  const rows = [['単元','問題文','赤','青','黄','緑','正解']];
+  // same question text + correct answer (regardless of choice order or which
+  // color the answer landed on) counts as a duplicate — skip it so one export
+  // doesn't repeat the same question with just the options reshuffled
+  const seen = new Set();
+  let guard = 0, dupSkips = 0;
+  while(rows.length-1 < n && guard < n*50){
+    guard++;
+    const topic = pick(pool);
+    let coreQ; try{ coreQ = topic.gen(); }catch(e){ continue; }
+    if(!coreQ || !coreQ.choices || coreQ.choices.length < 2) continue;
+    let dq; try{ dq = buildDisplayQuestion(topic, coreQ, pool); }catch(e){ continue; }
+    if(dq.type==='reorder' || !dq.choices || dq.choices.length!==4) continue;
+    const idx = dq.choices.indexOf(dq.answer);
+    if(idx===-1) continue;
+    const qText = csvQuestionText(dq);
+    const key = topic.id+'||'+dq.type+'||'+qText+'||'+dq.answer;
+    if(seen.has(key)){ dupSkips++; continue; }
+    seen.add(key);
+    rows.push([topic.label.replace('★',''), qText, ...dq.choices, colors[idx]]);
+  }
+  state.formats = savedFormats;
+
+  if(rows.length<=1){ alert('問題を生成できませんでした。単元・出題形式を見直してください。'); return; }
+
+  // with duplicates now excluded, a narrow selection (e.g. one unit with few
+  // formats enabled) can run out of distinct questions before reaching the
+  // requested count — let the user know rather than silently handing back fewer
+  const got = rows.length - 1;
+  if(got < n && !confirm(`重複を除いたところ、選んだ単元・出題形式では ${got} 問しか作れませんでした（${n} 問中）。この ${got} 問でCSVを書き出しますか？\n\n単元や出題形式を増やすと、より多くの問題を書き出せます。`)){
+    return;
+  }
+
+  const csv = rows.map(r=>r.map(csvEscape).join(',')).join('\r\n');
+  const btn = document.getElementById('csvExportBtn');
+  btn.disabled = true;
+  try{
+    await saveCsvFile('grammar-quiz.csv', '﻿'+csv);
+  } finally {
+    btn.disabled = false;
+  }
+}
+
+buildFormatUI();
+buildTopicUI();
+document.getElementById('startBtn').addEventListener('click',startQuiz);
+document.getElementById('backBtn').addEventListener('click',backToSelect);
+document.getElementById('nextBtn').addEventListener('click',nextQuestion);
+document.getElementById('modeHintBtn').addEventListener('click',()=>setMode('hint'));
+document.getElementById('modeFullBtn').addEventListener('click',()=>setMode('full'));
+document.getElementById('modeToggleBtn').addEventListener('click',()=>setMode(state.translationMode==='hint'?'full':'hint'));
+document.getElementById('reorderReset').addEventListener('click',resetReorder);
+document.getElementById('reorderCheck').addEventListener('click',checkReorder);
+document.getElementById('csvExportBtn').addEventListener('click',exportCsv);
+
+})();
+</script>
+</body>
+</html>
