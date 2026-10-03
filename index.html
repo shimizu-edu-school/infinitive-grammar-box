@@ -1878,6 +1878,74 @@ function genConditional(){
   return{ stem:it.stem, jp:it.jp, full:it.full, jpDistractors:it.jpDistractors, choices, answer:it.v, explain:it.explain };
 }
 
+function genCausative(){
+  const items=[
+    {stem:'My mother made me ___ (clean) my room.', v:'clean', opts:['clean','to clean','cleaning','cleaned'],
+     jp:'（make＋目的語＋動詞の原形：〜させる／強制）',
+     full:'母は私に部屋をそうじさせた。',
+     explain:`"make＋人＋動詞の原形"で「（強制的に）〜させる」という意味を表します。"to clean" のように to を入れたり、"cleaning" のように〜ing形にしたりするのは誤りです。`,
+     jpDistractors:['母は私が部屋をそうじするのを許した。','母は私に部屋をそうじしてもらった。','母は部屋をそうじするように私に頼んだ。']},
+    {stem:'My father let me ___ (use) his car.', v:'use', opts:['use','to use','using','used'],
+     jp:'（let＋目的語＋動詞の原形：〜させてあげる／許可）',
+     full:'父は私に車を使わせてくれた。',
+     explain:`"let＋人＋動詞の原形"で「（許可して）〜させてあげる」という意味を表します。`,
+     jpDistractors:['父は私に車を使うように強く言った。','父は私が車を使うのを禁止した。','父はすでに車を使った。']},
+    {stem:'She had her son ___ (carry) the bags.', v:'carry', opts:['carry','to carry','carrying','carried'],
+     jp:'（have＋目的語＋動詞の原形：〜してもらう）',
+     full:'彼女は息子にかばんを運んでもらった。',
+     explain:`"have＋人＋動詞の原形"で「（頼んで）〜してもらう」という意味を表します。`,
+     jpDistractors:['彼女は息子にかばんを運ばせることを許した。','彼女自身がかばんを運んだ。','彼女は息子にかばんを運ぶのをやめさせた。']},
+    {stem:'He got his sister ___ (help) him with his homework.', v:'to help', opts:['to help','help','helping','helped'],
+     jp:'（get＋目的語＋to＋動詞の原形：説得して〜させる）',
+     full:'彼は妹に（説得して）宿題を手伝ってもらった。',
+     explain:`"get＋人＋to＋動詞の原形"で「（説得して）〜させる」という意味を表します。get のときだけ to が必要になる点に注意しましょう。`,
+     jpDistractors:['彼は妹が宿題を手伝うのを禁止した。','彼自身が宿題を手伝った。','彼は妹に宿題を手伝ってほしくなかった。']},
+    {stem:'The news made her ___ (feel) sad.', v:'feel', opts:['feel','to feel','feeling','felt'],
+     jp:'（make＋目的語＋動詞の原形：〜という気持ちにさせる）',
+     full:'その知らせは彼女を悲しい気持ちにさせた。',
+     explain:`感情の変化も "make＋人＋動詞の原形" で表せます。`,
+     jpDistractors:['その知らせは彼女を喜ばせた。','彼女はその知らせを聞いても何も感じなかった。','彼女はその知らせを聞く前から悲しかった。']},
+    {stem:'Please let me ___ (know) if you need any help.', v:'know', opts:['know','to know','knowing','known'],
+     jp:'（let＋目的語＋動詞の原形：〜させてください）',
+     full:'助けが必要なら知らせてください。',
+     explain:`"let me know" は「知らせてください」という決まった言い方で、"let＋人＋動詞の原形" の形です。`,
+     jpDistractors:['助けが必要かどうか私に聞いてください。','助けはもう必要ありません。','私はあなたに知らせるつもりはありません。']},
+    {stem:'I had the mechanic ___ (fix) my bike yesterday.', v:'fix', opts:['fix','to fix','fixing','fixed'],
+     jp:'（have＋目的語＋動詞の原形：（人に）〜してもらう）',
+     full:'私は昨日、修理工に自転車を直してもらった。',
+     explain:`修理などを人に頼んでしてもらうときも "have＋人＋動詞の原形" を使います。`,
+     jpDistractors:['私は昨日、自分で自転車を直した。','私は修理工が自転車を直すのを許した。','私の自転車はまだ直っていない。']},
+    {stem:'She got her brother ___ (wash) the dishes.', v:'to wash', opts:['to wash','wash','washing','washed'],
+     jp:'（get＋目的語＋to＋動詞の原形：説得して〜させる）',
+     full:'彼女は弟を説得して、お皿を洗わせた。',
+     explain:`get は "get＋人＋to＋動詞の原形" の形になる点が、make/let/have と違う特徴です。`,
+     jpDistractors:['彼女は弟がお皿を洗うのを止めた。','彼女自身がお皿を洗った。','彼女の弟はお皿を洗いたがっていた。']},
+    {stem:'This movie always makes me ___ (cry).', v:'cry', opts:['cry','to cry','crying','cried'],
+     jp:'（make＋目的語＋動詞の原形：いつも〜という気持ちにさせる）',
+     full:'この映画はいつも私を泣かせる。',
+     explain:`"make＋人＋動詞の原形" は人の感情・状態を変化させる場合にもよく使われます。`,
+     jpDistractors:['この映画はいつも私を笑わせる。','私はこの映画を見ても泣かない。','この映画を見る前から私は泣いていた。']},
+    {stem:'My teacher let us ___ (leave) the classroom early.', v:'leave', opts:['leave','to leave','leaving','left'],
+     jp:'（let＋目的語＋動詞の原形：〜することを許す）',
+     full:'先生は私たちが教室を早く出ることを許した。',
+     explain:`許可を表す "let＋人＋動詞の原形" です。`,
+     jpDistractors:['先生は私たちが教室を早く出ることを禁止した。','先生は私たちに教室を早く出るように言った。','私たちはまだ教室にいる。']},
+    {stem:'We had a professional photographer ___ (take) our pictures.', v:'take', opts:['take','to take','taking','took'],
+     jp:'（have＋目的語＋動詞の原形：（人に）〜してもらう）',
+     full:'私たちはプロの写真家に写真を撮ってもらった。',
+     explain:`プロや専門家に何かをしてもらうときにも "have＋人＋動詞の原形" が使われます。`,
+     jpDistractors:['私たちは自分で写真を撮った。','私たちはその写真家が写真を撮るのを止めた。','私たちはまだ写真を撮っていない。']},
+    {stem:'Can you get your friend ___ (call) me back later?', v:'to call', opts:['to call','call','calling','called'],
+     jp:'（get＋目的語＋to＋動詞の原形：説得して〜させる）',
+     full:'あとで友達に私に電話をかけ直すように頼んでもらえますか。',
+     explain:`依頼表現でも "get＋人＋to＋動詞の原形" が使われます。`,
+     jpDistractors:['あとで友達があなたに電話をかけ直す予定はない。','あとで私があなたに電話をかけ直します。','友達はすでに電話をかけ直した。']},
+  ];
+  const it=pick(items);
+  const choices=uniqChoices(it.v, it.opts.filter(o=>o!==it.v));
+  return{ stem:it.stem, jp:it.jp, full:it.full, jpDistractors:it.jpDistractors, choices, answer:it.v, explain:it.explain };
+}
+
 /* ---------------------------------------------------------
    topic registry
 --------------------------------------------------------- */
@@ -1903,6 +1971,7 @@ const TOPICS = [
   {group:'文構造・その他', id:'comparison', label:'比較（比較級・最上級）', gen:genComparison},
   {group:'文構造・その他', id:'modal', label:'助動詞', gen:genModal},
   {group:'文構造・その他', id:'conditional', label:'仮定法', gen:genConditional},
+  {group:'文構造・その他', id:'causative', label:'使役動詞（make/let/have/get）', gen:genCausative},
 ];
 
 /* ---------------------------------------------------------
